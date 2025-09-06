@@ -21,5 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "AppCourse"
 include(":app")
-include(":cours-api")
-include(":course-db")
+
+include(":core:course-api")
+include(":core:course-db")
+
+include(":feature:auth")
+include(":feature:course_list")
