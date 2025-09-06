@@ -1,4 +1,4 @@
-package org.appcourse.screen
+package org.appcourse.course_list.ui.screen
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
