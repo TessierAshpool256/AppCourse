@@ -23,6 +23,7 @@ dependencyResolutionManagement {
 rootProject.name = "AppCourse"
 include(":app")
 
+include(":core:navigation")
 include(":core:course-api")
 include(":core:course-db")
 

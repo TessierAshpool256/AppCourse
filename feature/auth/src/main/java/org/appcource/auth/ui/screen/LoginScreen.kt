@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import org.appcourse.navigation.NavContract
 
 
 private const val LOG_TAG = "login"
@@ -17,6 +18,7 @@ private const val LOG_TAG = "login"
 @Composable
 fun LoginScreen(
     login: String,
+    nav: NavContract
 //    appBackStack: (() -> AppBackStack<NavKey>)
 ) {
     var login by remember { mutableStateOf(login) }
@@ -36,7 +38,11 @@ fun LoginScreen(
         )
 
         Button(
-            onClick = { Log.d(LOG_TAG, "Push login button") }
+            onClick = {
+                Log.d(LOG_TAG, "Push login button")
+                nav.login(true)
+                nav.navigateToHome()
+            }
         ) {
             Text("Вход")
 

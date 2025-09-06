@@ -7,10 +7,10 @@ import androidx.compose.runtime.setValue
 import androidx.navigation3.runtime.NavKey
 
 
-class AppNavigation<T : NavKey>(
+class AppBackStack<T : NavKey>(
     startRoute: T,
     private val loginRoute: T
-) {
+)  {
     interface RequiresLogin
 
     private var onLoginSuccessRoute: T? = null
@@ -37,7 +37,6 @@ class AppNavigation<T : NavKey>(
 
     fun login() {
         isLoggedIn = true
-
         onLoginSuccessRoute?.let {
             backStack.add(it)
             backStack.remove(loginRoute)

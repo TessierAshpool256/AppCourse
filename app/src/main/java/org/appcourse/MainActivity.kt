@@ -14,9 +14,10 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavKey
-import org.appcourse.navigation.AppNavigation
-import org.appcourse.navigation.DrawScreen
+import org.appcourse.navigation.AppBackStack
+import org.appcourse.navigation.DrawScreens
 import org.appcourse.navigation.LoginNav
+import org.appcourse.navigation.Navigate
 import org.appcourse.ui.theme.AppCourseTheme
 import org.appcourse.utile.setEdgeToEdgeConfig
 
@@ -38,13 +39,15 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier.padding(insets.asPaddingValues())
                 ) {
-                    val appBackStack = remember {
-                        AppNavigation<NavKey>(
-                            startRoute = LoginNav("log"),
-                            loginRoute = LoginNav()
+                    val navigate = remember {
+                        Navigate(
+                            AppBackStack<NavKey>(
+                                startRoute = LoginNav("log"),
+                                loginRoute = LoginNav()
+                            )
                         )
                     }
-                    DrawScreen(appBackStack)
+                    DrawScreens(navigate)
                 }
             }
         }

@@ -7,16 +7,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.navigation3.runtime.NavKey
-import org.appcourse.navigation.AppNavigation
-import org.appcourse.navigation.HomeNav
+import org.appcourse.navigation.NavContract
 
 
 private const val LOG_TAG = "home"
 
 @Composable
 fun HomeScreen(
-    appBackStack: (() -> AppNavigation<NavKey>)
+    nav: NavContract
 ) {
     Log.d(LOG_TAG, "HomeScreen")
     Column(
@@ -27,7 +25,7 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(
-                onClick = {appBackStack.invoke().add(HomeNav) }
+                onClick = { nav.navigateToHome() }
             ) {
                 Text("Home")
             }

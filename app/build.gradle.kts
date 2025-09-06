@@ -59,8 +59,11 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
-//    implementation(project(":core:navigation"))
+     implementation(project(":core:navigation"))
+
     implementation(project(":feature:auth"))
+    implementation(project(":feature:course_list"))
+
 
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
