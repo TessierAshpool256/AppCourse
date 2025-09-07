@@ -1,4 +1,4 @@
-package org.appcourse.navigation
+package org.appcourse.navigation_impl
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable

@@ -1,4 +1,4 @@
-package org.appcourse.navigation
+package org.appcourse.navigation_impl
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,7 +13,7 @@ import org.appcourse.course_list.ui.view.DrawScreenFrame
 
 
 @Composable
-internal fun DrawScreens(
+fun DrawScreens(
     nav: Navigate,
     modifier: Modifier = Modifier,
 ) {
