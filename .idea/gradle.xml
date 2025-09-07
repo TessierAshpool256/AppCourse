@@ -13,7 +13,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/course-api" />
+            <option value="$PROJECT_DIR$/core/course-data" />
             <option value="$PROJECT_DIR$/core/course-db" />
+            <option value="$PROJECT_DIR$/core/course-di" />
             <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/auth" />

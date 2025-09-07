@@ -30,3 +30,4 @@ include(":core:course-db")
 
 include(":feature:auth")
 include(":feature:course_list")
+include(":core:course-data")
