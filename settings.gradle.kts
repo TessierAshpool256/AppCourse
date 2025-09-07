@@ -25,6 +25,7 @@ include(":app")
 
 include(":core:navigation")
 include(":core:course-api")
+include(":core:course-di")
 include(":core:course-db")
 
 include(":feature:auth")
