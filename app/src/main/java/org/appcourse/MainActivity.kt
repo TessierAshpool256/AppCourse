@@ -13,21 +13,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.navigation3.runtime.NavKey
-import org.appcourse.navigation.AppBackStack
-import org.appcourse.navigation.DrawScreens
-import org.appcourse.navigation.LoginNav
-import org.appcourse.navigation.Navigate
+import dagger.hilt.android.AndroidEntryPoint
+import org.appcourse.di.AppComponent
+import org.appcourse.di.DaggerAppComponent
+import org.appcourse.navigation_impl.DrawScreens
+import org.appcourse.navigation_impl.Navigate
+import org.appcourse.navigation_impl.appBackStack
 import org.appcourse.ui.theme.AppCourseTheme
 import org.appcourse.utile.setEdgeToEdgeConfig
 
 
-
-private data object Home
-
-// A marker interface is used to mark any routes that require login
-private data object Login
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +35,10 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier.padding(insets.asPaddingValues())
                 ) {
-                    val navigate = remember {
-                        Navigate(
-                            AppBackStack<NavKey>(
-                                startRoute = LoginNav("log"),
-                                loginRoute = LoginNav()
-                            )
-                        )
-                    }
+
+                    val navigate = remember { Navigate(appBackStack()) }
+                    val appComponent: AppComponent = DaggerAppComponent.factory().create(navigate)
+
                     DrawScreens(navigate)
                 }
             }
