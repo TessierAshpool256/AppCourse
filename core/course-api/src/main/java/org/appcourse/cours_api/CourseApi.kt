@@ -20,7 +20,7 @@ interface CourseApi {
 }
 
 
-fun CourseApi(
+fun courseApi(
     okHttpClient: OkHttpClient = OkHttpClient(),
     url: String? = "https://drive.usercontent.google.com"
 ): CourseApi {

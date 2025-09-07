@@ -1,10 +1,10 @@
-package org.appcourse.navigation
+package org.appcourse.navigation_impl
 
-import androidx.navigation3.runtime.NavKey
+import org.appcourse.navigation.NavContract
 
 
 class Navigate(
-    val appBackStack : AppBackStack<NavKey>
+    val appBackStack : AppBackStack
 ) : NavContract {
     override fun navigateToLogin(login: String) {
         appBackStack.add(LoginNav(login))

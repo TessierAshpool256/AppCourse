@@ -10,15 +10,15 @@ import org.appcourse.db.models.CourseDBO
 interface CourseDAO {
     // Insert
     @Upsert
-    suspend fun insertCourse(course: CourseDAO): Long
+    suspend fun insertCourse(course: CourseDBO): Long
 
     @Upsert
-    suspend fun insertCourses(courses: List<CourseDAO>): List<Long>
+    suspend fun insertCourses(courses: List<CourseDBO>): List<Long>
 
 
     // Read
     @Query("SELECT * FROM course")
-    suspend fun getAllCourses(): List<CourseDBO>?
+    suspend fun getAllCourses(): List<CourseDBO>
 
     @Query("SELECT * FROM course WHERE id = :id")
     suspend fun getCourse(id: Long): CourseDBO?
