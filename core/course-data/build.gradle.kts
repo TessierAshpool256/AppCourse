@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "org.appcourse.data"
-    compileSdk = 36
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.androidSdk.min.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -23,21 +23,32 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    implementation(libs.javax.inject)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    api(project(":core:course-api"))
+    implementation(project(":core:course-db"))
+
+    api(project(":feature:course_list"))
 }

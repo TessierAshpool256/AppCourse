@@ -1,23 +1,22 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
+
+    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
-    namespace = "org.appcourse.di"
+    namespace = "org.appcourse.course_di"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
-        applicationId = "org.appcourse.di"
         minSdk = libs.versions.androidSdk.min.get().toInt()
-        targetSdk = libs.versions.androidSdk.target.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
+
 
     buildTypes {
         release {
@@ -52,4 +51,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(project(":core:course-db"))
+    implementation(project(":core:course-api"))
+    implementation(project(":core:course-data"))
+
+    api(project(":core:navigation-api"))
+    implementation(project(":core:navigation-impl"))
+
+    api(project(":feature:course_list"))
 }

@@ -2,9 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kapt)
 
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
@@ -62,15 +63,12 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
 
     implementation(libs.kotlinx.serialization.json)
+    implementation(project(":core:navigation-impl"))
 
-     implementation(project(":core:navigation"))
+    implementation(project(":core:course-di"))
 
-    implementation(project(":feature:auth"))
-    implementation(project(":feature:course_list"))
-
-
-    implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.navigation3.ui)
+    api(project(":feature:auth"))
+    api(project(":feature:course_list"))
 
     implementation(libs.androidx.compose.adaptive)
     implementation(libs.androidx.compose.material3.window.size.class1)
