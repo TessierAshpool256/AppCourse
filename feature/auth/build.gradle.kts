@@ -49,10 +49,14 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     implementation(libs.dagger.hilt.android)
     implementation(libs.dagger.hilt.compose)
     kapt(libs.dagger.hilt.compiler)
+
+    implementation(project(":core:ui-theme"))
 
     implementation(project(":core:navigation-api"))
 

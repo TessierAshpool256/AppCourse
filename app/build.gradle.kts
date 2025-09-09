@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
@@ -66,6 +68,7 @@ dependencies {
     implementation(project(":core:navigation-impl"))
 
     implementation(project(":core:course-di"))
+    implementation(project(":core:ui-theme"))
 
     api(project(":feature:auth"))
     api(project(":feature:course_list"))
