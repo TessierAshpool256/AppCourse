@@ -1,5 +1,6 @@
 package org.appcourse.course_list.ui.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material3.Card
@@ -16,7 +17,9 @@ fun DrawBottomNavButton(
     button: BottomNavyItem
 ) {
     Card(
-        modifier = Modifier.Companion.fillMaxHeight(fraction = 0.9f)
+        modifier = Modifier
+            .fillMaxHeight(fraction = 0.9f)
+            .clickable { button.goTo.invoke() },
     ) {
         Column(
             horizontalAlignment = Alignment.Companion.CenterHorizontally

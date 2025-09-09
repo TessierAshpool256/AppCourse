@@ -8,6 +8,7 @@ import org.appcourse.course_list.ui.CourseRepository
 import org.appcourse.data.CourseRepositoryImpl
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class CourseModule {

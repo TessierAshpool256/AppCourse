@@ -6,12 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.navigation3.runtime.NavKey
 
-fun appBackStack(): AppBackStack {
-    return AppBackStack(
-        startRoute = LoginNav("log"),
-        loginRoute = LoginNav()
-    )
-}
 
 class AppBackStack(
     startRoute: NavKey,
@@ -53,4 +47,11 @@ class AppBackStack(
         isLoggedIn = false
         backStack.removeAll { it is RequiresLogin }
     }
+}
+
+fun appBackStack(): AppBackStack {
+    return AppBackStack(
+        startRoute = LoginNav,
+        loginRoute = LoginNav
+    )
 }

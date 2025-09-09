@@ -53,7 +53,8 @@ dependencies {
     implementation(libs.androidx.compose.material3)
 
     implementation(libs.dagger.hilt.android)
-//    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
+    implementation(libs.javax.inject)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt(libs.dagger.hilt.compiler)
 
     api(project(":core:navigation-api"))

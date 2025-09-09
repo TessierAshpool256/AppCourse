@@ -11,6 +11,7 @@ import org.appcourse.cours_api.courseApi
 import org.appcourse.db.CourseDatabase
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetModule {

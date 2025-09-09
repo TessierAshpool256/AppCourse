@@ -25,6 +25,7 @@ import org.appcourse.utile.setEdgeToEdgeConfig
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setEdgeToEdgeConfig()

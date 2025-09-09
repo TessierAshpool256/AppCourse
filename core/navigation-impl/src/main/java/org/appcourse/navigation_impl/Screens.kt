@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class LoginNav(val login: String = ""): NavKey
+data object LoginNav: NavKey
 
 @Serializable
-data class RegisterNav(val login: String = ""): NavKey
+data object RegisterNav: NavKey
 
 /**
  * _Главная_

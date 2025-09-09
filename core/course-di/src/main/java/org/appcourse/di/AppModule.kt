@@ -9,8 +9,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [NetModule::class, CourseModule::class])
 interface AppComponent {
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance navigate: Navigate): AppComponent
-    }
+
+//    @Component.Factory
+//    interface Factory {
+//        fun create(@BindsInstance navigate: Navigate): AppComponent
+//    }
 }
