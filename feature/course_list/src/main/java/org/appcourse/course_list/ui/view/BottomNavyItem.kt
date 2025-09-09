@@ -6,5 +6,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 data class BottomNavyItem(
     val title: String,
     val icon: ImageVector,
-    var isSelected: Boolean = false
+    var isSelected: Boolean = false,
+    val goTo: (() -> Unit)
 )

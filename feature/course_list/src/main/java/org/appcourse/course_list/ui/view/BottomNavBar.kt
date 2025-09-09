@@ -4,7 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Phone
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -23,9 +24,9 @@ fun BottomNavBar(
 ) {
     val buttonList = remember {
         listOf(
-            BottomNavyItem("Главная", Icons.Outlined.Phone),
-            BottomNavyItem("Избранное", Icons.Outlined.Phone),
-            BottomNavyItem("Аккаунт", Icons.Outlined.Phone)
+            BottomNavyItem("Главная", Icons.Outlined.Home) { nav.navigateToHome() },
+            BottomNavyItem("Избранное", Icons.Outlined.Home) { nav.navigateToLikeCourse() },
+            BottomNavyItem("Аккаунт", Icons.Outlined.Person) { nav.navigateToAccount() }
         )
     }
 

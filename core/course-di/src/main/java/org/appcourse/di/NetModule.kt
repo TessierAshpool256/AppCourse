@@ -9,6 +9,9 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import org.appcourse.cours_api.courseApi
 import org.appcourse.db.CourseDatabase
+import org.appcourse.navigation.NavContract
+import org.appcourse.navigation_impl.Navigate
+import org.appcourse.navigation_impl.appBackStack
 import javax.inject.Singleton
 
 
@@ -33,4 +36,11 @@ object NetModule {
     ): CourseDatabase {
         return CourseDatabase(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideNavContract() : NavContract {
+        return Navigate(appBackStack())
+    }
+
 }

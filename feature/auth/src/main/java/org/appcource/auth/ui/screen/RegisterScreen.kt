@@ -8,14 +8,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import org.appcource.auth.AuthViewModel
 
 
 @Composable
-fun RegisterScreen(login: String) {
+fun RegisterScreen(
+    viewModel: AuthViewModel = hiltViewModel<AuthViewModel>()
+) {
     Column {
         Text("TODO", color = Color.Companion.Yellow)
         Spacer(modifier = Modifier.padding(20.dp))
         Text("RegisterScreen")
-        Text(login)
+        Text(viewModel.login.value)
     }
 }

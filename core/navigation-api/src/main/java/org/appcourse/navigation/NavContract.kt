@@ -4,8 +4,8 @@ private const val LOG_TAG = "nav_api"
 
 
 interface NavContract {
-    fun navigateToLogin(login: String)
-    fun navigateToRegister(login: String)
+    fun navigateToLogin()
+    fun navigateToRegister()
 
     fun navigateToHome()
     fun navigateToLikeCourse()

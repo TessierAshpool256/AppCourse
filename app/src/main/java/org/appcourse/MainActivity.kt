@@ -11,17 +11,24 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
-import org.appcourse.di.AppComponent
-import org.appcourse.di.DaggerAppComponent
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
+import org.appcourse.navigation.NavContract
 import org.appcourse.navigation_impl.DrawScreens
-import org.appcourse.navigation_impl.Navigate
-import org.appcourse.navigation_impl.appBackStack
 import org.appcourse.ui.theme.AppCourseTheme
 import org.appcourse.utile.setEdgeToEdgeConfig
 
+
+
+@EntryPoint
+@InstallIn(SingletonComponent::class)
+interface NavContractEntryPoint {
+    fun navContract(): NavContract
+}
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -36,11 +43,12 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier.padding(insets.asPaddingValues())
                 ) {
+                    val nav = EntryPointAccessors.fromApplication(
+                            this@MainActivity.application,
+                            NavContractEntryPoint::class.java
+                        )
 
-                    val navigate = remember { Navigate(appBackStack()) }
-                    val appComponent: AppComponent = DaggerAppComponent.factory().create(navigate)
-
-                    DrawScreens(navigate)
+                    DrawScreens(nav.navContract())
                 }
             }
         }

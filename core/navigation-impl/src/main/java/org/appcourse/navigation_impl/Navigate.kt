@@ -6,12 +6,12 @@ import org.appcourse.navigation.NavContract
 class Navigate(
     val appBackStack : AppBackStack
 ) : NavContract {
-    override fun navigateToLogin(login: String) {
-        appBackStack.add(LoginNav(login))
+    override fun navigateToLogin() {
+        appBackStack.add(LoginNav)
     }
 
-    override fun navigateToRegister(login: String) {
-        appBackStack.add(RegisterNav(login))
+    override fun navigateToRegister() {
+        appBackStack.add(RegisterNav)
     }
 
     override fun navigateToHome() {

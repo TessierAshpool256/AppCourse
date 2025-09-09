@@ -1,11 +1,11 @@
 package org.appcourse.navigation
 
 class FakeNavigator : NavContract {
-    override fun navigateToLogin(login: String) {
+    override fun navigateToLogin() {
         TODO("navigateToLogin")
     }
 
-    override fun navigateToRegister(login: String) {
+    override fun navigateToRegister() {
         TODO("navigateToRegister")
     }
 

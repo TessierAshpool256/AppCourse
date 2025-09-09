@@ -4,19 +4,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
-import org.appcource.auth.ui.screen.LoginScreen
+import org.appcource.auth.ui.screen.login.LoginScreen
 import org.appcource.auth.ui.screen.RegisterScreen
 import org.appcourse.course_list.ui.screen.AccountScreen
 import org.appcourse.course_list.ui.screen.HomeScreen
 import org.appcourse.course_list.ui.screen.LikeScreen
 import org.appcourse.course_list.ui.view.DrawScreenFrame
+import org.appcourse.navigation.NavContract
 
 
 @Composable
 fun DrawScreens(
-    nav: Navigate,
+    nav: NavContract,
     modifier: Modifier = Modifier,
 ) {
+    nav as Navigate
     NavDisplay(
         modifier = modifier,
         backStack = nav.appBackStack.backStack,
@@ -24,13 +26,10 @@ fun DrawScreens(
         entryProvider = { key ->
             when (key) {
                 is LoginNav -> NavEntry(key) {
-                    LoginScreen(
-                        key.login,
-                        nav
-                    )
+                    LoginScreen()
                 }
                 is RegisterNav -> NavEntry(key) {
-                    RegisterScreen(key.login)
+                    RegisterScreen()
                 }
 
                 //--- Course list ---//

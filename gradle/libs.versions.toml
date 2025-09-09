@@ -16,6 +16,7 @@ jetbrainsKotlinJvm = "2.2.10"
 room = "2.7.2"
 javax-inject = "1"
 dagger = "2.57.1"
+hiltNavigationCompose = "1.2.0"
 navigation3 = "1.0.0-alpha08"
 okhttp = "5.1.0"
 retrofit = "3.0.0"
@@ -67,6 +68,7 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 
 # DI
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
+dagger-hilt-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
 
