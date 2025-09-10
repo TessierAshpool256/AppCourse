@@ -72,7 +72,7 @@ fun CourseView(
             ) {
                 Text(
                     modifier = Modifier.padding(start = 16.dp),
-                    course.price
+                    text = course.price
                 )
 
                 Text(
