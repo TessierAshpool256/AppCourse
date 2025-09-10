@@ -17,6 +17,7 @@ val Stroke = Color(0xFF4D555E)
 
 val TextInTextFiled = Color(0xFF7a7a7f)
 
+val Glass = Color(0x4d32333A)
 
 val OkColor = Color(0xFFF98509)
 val VkColor = Color(0xFF2683ED)
