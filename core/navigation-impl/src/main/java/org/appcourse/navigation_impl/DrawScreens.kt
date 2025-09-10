@@ -1,13 +1,14 @@
 package org.appcourse.navigation_impl
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import org.appcource.auth.ui.screen.login.LoginScreen
-import org.appcource.auth.ui.screen.RegisterScreen
+import org.appcource.auth.ui.screen.login.RegisterScreen
 import org.appcourse.course_list.ui.screen.AccountScreen
-import org.appcourse.course_list.ui.screen.HomeScreen
+import org.appcourse.course_list.ui.screen.home.HomeScreen
 import org.appcourse.course_list.ui.screen.LikeScreen
 import org.appcourse.course_list.ui.view.DrawScreenFrame
 import org.appcourse.navigation.NavContract
@@ -20,7 +21,8 @@ fun DrawScreens(
 ) {
     nav as Navigate
     NavDisplay(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxSize(1f),
         backStack = nav.appBackStack.backStack,
         onBack = { nav.goBack() },
         entryProvider = { key ->
@@ -37,7 +39,7 @@ fun DrawScreens(
                     DrawScreenFrame(nav) {
                         when (key) {
                             is HomeNav -> {
-                                HomeScreen(nav)
+                                HomeScreen()
                             }
 
                             is LikeCourseNav -> {
@@ -56,27 +58,5 @@ fun DrawScreens(
                 }
             }
         }
-//        entryProvider = entryProvider {
-//            //--- Auth ---//
-//            entry<LoginNav> { key ->
-//                LoginScreen(
-//                    key.login,
-//                )
-//            }
-//            entry<RegisterNav> { key ->
-//                RegisterScreen(key.login)
-//            }
-//
-//            //--- Course list ---//
-//            entry<HomeNav> { key ->
-//                HomeScreen(nav)
-//            }
-//            entry<LikeCourseNav> { key ->
-//                LikeScreen()
-//            }
-//            entry<AccountNav> { key ->
-//                AccountScreen()
-//            }
-//        }
     )
 }

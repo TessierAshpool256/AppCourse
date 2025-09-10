@@ -46,6 +46,7 @@ import org.appcource.auth.FakeAuthViewModel
 import org.appcource.auth.R
 import org.appcourse.ui_theme.AppCourseTheme
 import org.appcourse.ui_theme.OkColor
+import org.appcourse.ui_theme.TextInTextFiled
 import org.appcourse.ui_theme.VkColor
 
 
@@ -110,7 +111,7 @@ fun LoginScreen(
                         if (login.isEmpty()) Text(
                             modifier = Modifier.padding(start = 16.dp),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onTertiary,
+                            color = TextInTextFiled,
                             text = "example@gmail.com"
                         )
 
@@ -157,7 +158,7 @@ fun LoginScreen(
                             Text(
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.padding(start = 16.dp),
-                                color = MaterialTheme.colorScheme.onTertiary,
+                                color = TextInTextFiled,
                                 text = "Введите пароль"
                             )
                         Row(
