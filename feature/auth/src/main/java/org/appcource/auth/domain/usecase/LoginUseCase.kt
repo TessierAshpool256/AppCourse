@@ -2,6 +2,10 @@ package org.appcource.auth.domain.usecase
 
 import javax.inject.Inject
 
+class InvalidEmailException(
+    message: String = "Некорректная почта"
+): IllegalArgumentException(message)
+
 
 class LoginUseCase @Inject constructor() {
     /**
@@ -16,7 +20,14 @@ class LoginUseCase @Inject constructor() {
         login: String,
         password: String
     ) : Result<String> {
-//        TODO("")
-        return Result.success("")
+        val emailRegex = Regex(
+            "^((?!\\.)[\\w\\-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])\$\n",
+            RegexOption.COMMENTS
+        )
+
+        return if (emailRegex.matches(login))
+            Result.success(login)
+        else
+            Result.failure(InvalidEmailException())
     }
 }

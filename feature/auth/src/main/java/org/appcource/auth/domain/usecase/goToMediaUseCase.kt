@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 
 class goToMediaUseCase @Inject constructor(
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) {
     operator fun invoke(
         url: String

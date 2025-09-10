@@ -60,7 +60,6 @@ dependencies {
 
     implementation(project(":core:navigation-api"))
 
-    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
