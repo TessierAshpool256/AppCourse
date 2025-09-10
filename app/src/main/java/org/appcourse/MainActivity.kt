@@ -19,9 +19,8 @@ import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.components.SingletonComponent
 import org.appcourse.navigation.NavContract
 import org.appcourse.navigation_impl.DrawScreens
-import org.appcourse.ui.theme.AppCourseTheme
+import org.appcourse.ui_theme.AppCourseTheme
 import org.appcourse.utile.setEdgeToEdgeConfig
-
 
 
 @EntryPoint

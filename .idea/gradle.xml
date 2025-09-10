@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/core/course-di" />
             <option value="$PROJECT_DIR$/core/navigation-api" />
             <option value="$PROJECT_DIR$/core/navigation-impl" />
+            <option value="$PROJECT_DIR$/core/ui-theme" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/auth" />
             <option value="$PROJECT_DIR$/feature/course_list" />
