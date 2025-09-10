@@ -9,5 +9,5 @@ data class CourseEntity(
     var rate: String,
     var startDate: String,
     var hasLike: Boolean,
-    var publishDate: String? = "",
+    var publishDate: String = "",
 )
