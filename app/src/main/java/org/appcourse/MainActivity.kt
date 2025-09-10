@@ -1,50 +1,55 @@
 package org.appcourse
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import org.appcourse.ui.theme.AppCourseTheme
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
+import org.appcourse.navigation.NavContract
+import org.appcourse.navigation_impl.DrawScreens
+import org.appcourse.ui_theme.AppCourseTheme
+import org.appcourse.utile.setEdgeToEdgeConfig
 
 
+@EntryPoint
+@InstallIn(SingletonComponent::class)
+interface NavContractEntryPoint {
+    fun navContract(): NavContract
+}
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        setEdgeToEdgeConfig()
         setContent {
+            val insets = WindowInsets.systemBars
+                .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
             AppCourseTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Box(
+                    modifier = Modifier.padding(insets.asPaddingValues())
+                ) {
+                    val nav = EntryPointAccessors.fromApplication(
+                            this@MainActivity.application,
+                            NavContractEntryPoint::class.java
+                        )
+
+                    DrawScreens(nav.navContract())
                 }
             }
         }
-    }
-}
-
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AppCourseTheme {
-        Greeting("Android")
     }
 }
