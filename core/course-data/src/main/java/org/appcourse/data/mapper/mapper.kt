@@ -2,6 +2,7 @@ package org.appcourse.data.mapper
 
 import org.appcourse.cours_api.models.CourseDTO
 import org.appcourse.course_list.models.CourseEntity
+import org.appcourse.data.utile.formatRussianDate
 import org.appcourse.db.models.CourseDBO
 
 
@@ -12,9 +13,9 @@ fun CourseDBO.toCourseEntity(): CourseEntity {
         text = this.text.orEmpty(),
         price = this.price.orEmpty(),
         rate = this.rate.orEmpty(),
-        startDate = this.startDate.orEmpty(),
+        startDate = this.startDate?.formatRussianDate() ?: "",
         hasLike = this.hasLike ?: false,
-        publishDate = this.publishDate.orEmpty()
+        publishDate = this.publishDate?.formatRussianDate() ?: ""
     )
 }
 
