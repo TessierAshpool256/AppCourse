@@ -16,9 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.appcourse.course_list.models.CourseEntity
-import org.appcourse.course_list.models.SortOrder
 import org.appcourse.course_list.ui.screen.favorite.view.FavoritListHead
-import org.appcourse.course_list.ui.screen.home.CourseList
 import org.appcourse.course_list.ui.view.CourseView
 import org.appcourse.course_list.utile.mockCoursesList
 import org.appcourse.ui_theme.AppCourseTheme
@@ -62,9 +60,8 @@ fun PreviewFavoriteListSuccess() {
         ) {
             Spacer(modifier = Modifier.padding(8.dp))
             FavoriteList(
-                mockCoursesList(),
-                {_, _ -> }
-            )
+                mockCoursesList()
+            ) { _, _ -> }
         }
     }
 }
