@@ -1,4 +1,4 @@
-package org.appcourse.course_list.ui.screen.home
+package org.appcourse.course_list.ui.screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +15,7 @@ import org.appcourse.ui_theme.AppCourseTheme
 
 
 @Composable
-fun CourseListLoading() {
+fun ListLoading() {
     Box(
         modifier = Modifier
             .fillMaxSize(1f),
@@ -35,6 +35,6 @@ fun CourseListLoading() {
 @Composable
 fun PrevieCourseListLoading() {
     AppCourseTheme {
-        CourseListLoading()
+        ListLoading()
     }
 }

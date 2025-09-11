@@ -10,11 +10,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.appcourse.course_list.R
 import org.appcourse.course_list.models.SortOrder
+import org.appcourse.course_list.repository.CourseRepository
 import org.appcourse.course_list.ui.view.BottomNavyItem
 import org.appcourse.navigation.NavContract
 import javax.inject.Inject
@@ -43,22 +45,40 @@ class CoursesViewModel @Inject constructor (
             _sortOrder.value =  SortOrder.ById
     }
 
+    fun favoriteCourses(): StateFlow<CourseListState> {
+        return rawCourses.map { state ->
+                when (state) {
+                    is CourseListState.Success ->
+                        CourseListState.Success(
+                            state.list.filter { course -> course.hasLike }
+                        )
+                    else -> state
+                }
+            }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+                initialValue = CourseListState.Loading
+            )
+    }
+
     val courses: StateFlow<CourseListState> = combine(
         rawCourses,
         _sortOrder
     ) { state, order ->
-        if (state is CourseListState.Success) {
-            val sorted = when (order) {
-                SortOrder.ById -> state.list.sortedBy { it.id }
-                SortOrder.ByPublishDate -> state.list.sortedBy { it.publishDate }
+        when (state) {
+            is CourseListState.Success -> {
+                val sorted = when (order) {
+                    SortOrder.ById -> state.list.sortedBy { it.id }
+                    SortOrder.ByPublishDate -> state.list.sortedBy { it.publishDate }
+                }
+                CourseListState.Success(sorted)
             }
-            CourseListState.Success(sorted)
-        } else {
-            CourseListState.Error
+            else -> state
         }
     }
         .onStart { emit(CourseListState.Loading) }
-        .catch { e -> emit(CourseListState.Error) }
+        .catch { e -> emit(CourseListState.Error()) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),

@@ -1,4 +1,4 @@
-package org.appcource.auth.domain.usecase
+package org.appcource.auth.usecase
 
 import javax.inject.Inject
 
@@ -20,12 +20,8 @@ class LoginUseCase @Inject constructor() {
         login: String,
         password: String
     ) : Result<String> {
-        val emailRegex = Regex(
-            "^((?!\\.)[\\w\\-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])\$\n",
-            RegexOption.COMMENTS
-        )
 
-        return if (emailRegex.matches(login))
+        return if (true)
             Result.success(login)
         else
             Result.failure(InvalidEmailException())

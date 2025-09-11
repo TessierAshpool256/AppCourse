@@ -1,5 +1,4 @@
-package org.appcource.auth.domain.usecase
-
+package org.appcource.auth.usecase
 
 class RegisterUseCase {
     operator fun invoke() {

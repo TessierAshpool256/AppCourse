@@ -19,7 +19,7 @@ class Navigate(
     }
 
     override fun navigateToLikeCourse() {
-        appBackStack.add(LikeCourseNav)
+        appBackStack.add(FavoriteCourseNav)
     }
 
     override fun navigateToAccount() {

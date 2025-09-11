@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.appcourse.course_list.ui.CourseRepository
+import org.appcourse.course_list.repository.CourseRepository
 import org.appcourse.data.CourseRepositoryImpl
 import javax.inject.Singleton
 

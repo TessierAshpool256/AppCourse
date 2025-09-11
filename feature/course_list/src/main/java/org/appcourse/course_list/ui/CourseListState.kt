@@ -7,5 +7,5 @@ sealed class CourseListState {
 
     data class Success(val list: List<CourseEntity>) : CourseListState()
 
-    object Error : CourseListState()
+    data class Error(val massage: String = "Error") : CourseListState()
 }

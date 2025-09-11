@@ -1,4 +1,4 @@
-package org.appcource.auth.ui.screen.login
+package org.appcource.auth.screen.login
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

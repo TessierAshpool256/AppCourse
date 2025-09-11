@@ -1,4 +1,4 @@
-package org.appcource.auth.domain.usecase
+package org.appcource.auth.usecase
 
 import android.content.Context
 import android.content.Intent

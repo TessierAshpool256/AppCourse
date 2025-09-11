@@ -1,4 +1,4 @@
-package org.appcourse.course_list.ui.screen.home.view
+package org.appcourse.course_list.ui.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

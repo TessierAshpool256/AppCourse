@@ -17,7 +17,7 @@ data object RegisterNav: NavKey
 data object HomeNav: AppBackStack.RequiresLogin, NavKey
 
 @Serializable
-object LikeCourseNav: AppBackStack.RequiresLogin, NavKey
+object FavoriteCourseNav: AppBackStack.RequiresLogin, NavKey
 
 @Serializable
 object AccountNav: AppBackStack.RequiresLogin, NavKey

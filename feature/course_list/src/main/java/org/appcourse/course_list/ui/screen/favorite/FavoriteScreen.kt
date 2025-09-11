@@ -1,9 +1,8 @@
-package org.appcourse.course_list.ui.screen.home
+package org.appcourse.course_list.ui.screen.favorite
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
-import org.appcourse.course_list.models.SortOrder
 import org.appcourse.course_list.ui.CourseListState
 import org.appcourse.course_list.ui.CoursesViewModel
 import org.appcourse.course_list.ui.screen.ListError
@@ -11,34 +10,27 @@ import org.appcourse.course_list.ui.screen.ListLoading
 
 
 @Composable
-fun HomeScreen(
+fun FavoriteScreen(
     viewModel: CoursesViewModel = hiltViewModel<CoursesViewModel>()
 ) {
-    val courses = viewModel.courses.collectAsState().value
-    val sortOrder = viewModel.sortOrder.collectAsState().value
+    val courses = viewModel.favoriteCourses().collectAsState().value
 
-    HomeContent(
+    FavoriteContent(
         uiState = courses,
-        sortOrder = sortOrder,
-        changeSortOrder = viewModel::changeSortOrder,
         toggleFavorite = viewModel::toggleFavorite
     )
 }
 
 @Composable
-internal fun HomeContent(
+internal fun FavoriteContent(
     uiState: CourseListState,
-    sortOrder: SortOrder,
-    changeSortOrder: (() -> Unit),
-    toggleFavorite: ((Long, Boolean)-> Unit)
+    toggleFavorite: ((Long, Boolean)-> Unit),
 ) {
     when (uiState) {
         is CourseListState.Loading -> ListLoading()
         is CourseListState.Error   -> ListError(uiState.massage)
-        is CourseListState.Success -> CourseList(
+        is CourseListState.Success -> FavoriteList(
             courses = uiState.list,
-            sortOrder = sortOrder,
-            changeSortOrder = changeSortOrder,
             toggleFavorite = toggleFavorite
         )
     }

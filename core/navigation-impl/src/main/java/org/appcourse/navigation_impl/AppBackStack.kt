@@ -15,7 +15,7 @@ class AppBackStack(
 
     private var onLoginSuccessRoute: NavKey? = null
 
-    var isLoggedIn by mutableStateOf(true) // TODO()
+    var isLoggedIn by mutableStateOf(false)
         private set
 
     val backStack = mutableStateListOf(startRoute)
@@ -51,8 +51,7 @@ class AppBackStack(
 
 fun appBackStack(): AppBackStack {
     return AppBackStack(
-        startRoute = HomeNav, // TODO()
-//        startRoute = LoginNav, // TODO()
+        startRoute = LoginNav,
         loginRoute = LoginNav
     )
 }

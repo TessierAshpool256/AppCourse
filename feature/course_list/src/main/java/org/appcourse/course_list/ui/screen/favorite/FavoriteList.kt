@@ -1,4 +1,4 @@
-package org.appcourse.course_list.ui.screen.home
+package org.appcourse.course_list.ui.screen.favorite
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -17,18 +17,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.appcourse.course_list.models.CourseEntity
 import org.appcourse.course_list.models.SortOrder
+import org.appcourse.course_list.ui.screen.favorite.view.FavoritListHead
+import org.appcourse.course_list.ui.screen.home.CourseList
 import org.appcourse.course_list.ui.view.CourseView
-import org.appcourse.course_list.ui.screen.home.view.FindFilterHeader
 import org.appcourse.course_list.utile.mockCoursesList
 import org.appcourse.ui_theme.AppCourseTheme
 
 
 @Composable
-fun CourseList(
+fun FavoriteList(
     courses: List<CourseEntity>,
-    sortOrder: SortOrder,
-    changeSortOrder: (() -> Unit),
-    toggleFavorite: ((Long, Boolean)-> Unit),
+    toggleFavorite: ((Long, Boolean) -> Unit)
 ) {
     LazyColumn(
         modifier = Modifier
@@ -37,22 +36,21 @@ fun CourseList(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item(key = Long.MIN_VALUE) {
-            FindFilterHeader(sortOrder, changeSortOrder)
+            Spacer(modifier = Modifier.padding(8.dp))
+            FavoritListHead()
         }
         items(courses, key = { it.id }) { course ->
             CourseView(course, toggleFavorite)
-        }
-        item(key = Long.MAX_VALUE) {
-            Spacer(modifier = Modifier.padding(8.dp))
         }
     }
 }
 
 
+
 @SuppressLint("UnrememberedMutableState")
 @Preview(device = "id:pixel_9", showBackground = true)
 @Composable
-fun PreviewCourseListSuccess() {
+fun PreviewFavoriteListSuccess() {
     AppCourseTheme {
         Box(
             modifier = Modifier
@@ -60,10 +58,8 @@ fun PreviewCourseListSuccess() {
                 .background(MaterialTheme.colorScheme.background)
         ) {
             Spacer(modifier = Modifier.padding(8.dp))
-            CourseList(
+            FavoriteList(
                 mockCoursesList(),
-                SortOrder.ById,
-                {},
                 {_, _ -> }
             )
         }
