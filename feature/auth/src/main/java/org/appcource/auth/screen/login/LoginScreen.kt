@@ -1,4 +1,4 @@
-package org.appcource.auth.ui.screen.login
+package org.appcource.auth.screen.login
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -31,6 +31,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -46,6 +47,7 @@ import org.appcource.auth.FakeAuthViewModel
 import org.appcource.auth.R
 import org.appcourse.ui_theme.AppCourseTheme
 import org.appcourse.ui_theme.OkColor
+import org.appcourse.ui_theme.TextInTextFiled
 import org.appcourse.ui_theme.VkColor
 
 
@@ -62,7 +64,7 @@ fun LoginScreen(
 
     var login by viewModel.login
     var password by viewModel.password
-    var isError by viewModel.isError
+    var dataIsCorrect by viewModel.dataIsCorrect
 
     Box(
         modifier = Modifier
@@ -110,17 +112,19 @@ fun LoginScreen(
                         if (login.isEmpty()) Text(
                             modifier = Modifier.padding(start = 16.dp),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onTertiary,
+                            color = TextInTextFiled,
                             text = "example@gmail.com"
                         )
 
                         BasicTextField(
-                            modifier = Modifier.padding(start = 16.dp),
+                            modifier = Modifier
+                                .padding(start = 16.dp),
                             cursorBrush = SolidColor(MaterialTheme.colorScheme.secondary),
                             textStyle = TextStyle(color = MaterialTheme.colorScheme.secondary),
                             value = login,
                             onValueChange = { newText ->
                                 if (alphanumericRegex.matches(newText)) {
+                                    viewModel.checkData()
                                     login = newText
                                 }
                             },
@@ -157,7 +161,7 @@ fun LoginScreen(
                             Text(
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.padding(start = 16.dp),
-                                color = MaterialTheme.colorScheme.onTertiary,
+                                color = TextInTextFiled,
                                 text = "Введите пароль"
                             )
                         Row(
@@ -173,11 +177,12 @@ fun LoginScreen(
                                 textStyle = TextStyle(color = MaterialTheme.colorScheme.secondary),
                                 value = password,
                                 onValueChange = { newText ->
-                                    if (alphanumericRegex.matches(newText)) {
-                                        password = newText
-                                    } else {
-                                        Log.d(LOG_TAG, "Password field incorrect char")
-                                    }
+//                                    if (alphanumericRegex.matches(newText)) {
+                                    viewModel.checkData()
+                                    password = newText
+//                                    } else {
+//                                        Log.d(LOG_TAG, "Password field incorrect char")
+//                                    }
                                 },
                                 visualTransformation = if (showPassword) VisualTransformation.None
                                 else PasswordVisualTransformation(),
@@ -212,9 +217,10 @@ fun LoginScreen(
                     colors = ButtonColors(
                         contentColor = MaterialTheme.colorScheme.secondary,
                         containerColor = MaterialTheme.colorScheme.primary,
-                        disabledContentColor = MaterialTheme.colorScheme.secondary,
-                        disabledContainerColor = MaterialTheme.colorScheme.primary
+                        disabledContentColor = Color.Black,
+                        disabledContainerColor = MaterialTheme.colorScheme.onTertiary
                     ),
+                    enabled = dataIsCorrect,
                     onClick = {
                         Log.d(LOG_TAG, "Push login button")
                         coroutineScope.launch {
@@ -249,7 +255,7 @@ fun LoginScreen(
                     }
                     Text(
                         modifier = Modifier
-                            .clickable { viewModel.goToRegistration() },
+                            .clickable { viewModel.goToForgetPass() },
                         color = MaterialTheme.colorScheme.primary,
                         text = "Забыл пароль"
                     )

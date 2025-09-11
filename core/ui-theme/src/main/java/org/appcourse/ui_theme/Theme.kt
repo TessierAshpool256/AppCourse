@@ -13,7 +13,7 @@ private val DarkColorScheme = darkColorScheme(
     primary = Green,
     secondary = White,
     tertiary = DarkGray,
-    onTertiary = Color(0xFF7a7a7f),
+    onTertiary = LightGray,
     background = Dark
 )
 
@@ -35,11 +35,11 @@ fun AppCourseTheme(
 
 
     val myShapes = Shapes(
-        extraSmall = RoundedCornerShape(2.dp),   // например, для чек‑боксов
-        small = RoundedCornerShape(6.dp),   // для небольших кнопок
-        medium = RoundedCornerShape(12.dp),  // основной вариант
-        large = RoundedCornerShape(20.dp),  // карточки, диалоги
-        extraLarge = RoundedCornerShape(30.dp)   // модальные окна, FAB‑ы
+        extraSmall = RoundedCornerShape(2.dp),
+        small = RoundedCornerShape(6.dp),
+        medium = RoundedCornerShape(16.dp),
+        large = RoundedCornerShape(20.dp),
+        extraLarge = RoundedCornerShape(30.dp)
     )
 
 

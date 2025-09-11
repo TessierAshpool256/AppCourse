@@ -1,11 +1,12 @@
 package org.appcourse.course_list.ui.view
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 
 
 data class BottomNavyItem(
     val title: String,
-    val icon: ImageVector,
-    var isSelected: Boolean = false,
+    val icon: Int,
+    var isSelected: MutableState<Boolean> = mutableStateOf(false),
     val goTo: (() -> Unit)
 )

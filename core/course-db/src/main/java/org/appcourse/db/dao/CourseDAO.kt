@@ -3,6 +3,7 @@ package org.appcourse.db.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
+import kotlinx.coroutines.flow.Flow
 import org.appcourse.db.models.CourseDBO
 
 
@@ -18,8 +19,12 @@ interface CourseDAO {
 
     // Read
     @Query("SELECT * FROM course")
-    suspend fun getAllCourses(): List<CourseDBO>
+    fun getAllCourses(): Flow<List<CourseDBO>>
 
     @Query("SELECT * FROM course WHERE id = :id")
     suspend fun getCourse(id: Long): CourseDBO?
+
+
+    @Query("UPDATE course SET hasLike = :fav WHERE id = :id")
+    suspend fun updateFavorite(id: Long, fav: Boolean)
 }
