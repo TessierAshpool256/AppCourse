@@ -22,3 +22,10 @@ CourseView содержит элементы с размытием заднег�
 Не запрашивает новые данные, осуществляя фильтрацию в ViewModel.
 
 ---
+
+<table>
+  <tr>
+    <td><img src="./doc/img/login.jpg" alt="login" width="200"></td>
+    <td><img src="./doc/img/home.jpg" alt="home" width="200"></td>
+  </tr>
+</table>
