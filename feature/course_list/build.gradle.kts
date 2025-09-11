@@ -48,7 +48,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.compose.haze)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
@@ -57,7 +58,7 @@ dependencies {
 
     implementation(libs.dagger.hilt.android)
     implementation(libs.javax.inject)
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation(libs.dagger.hilt.compose)
     kapt(libs.dagger.hilt.compiler)
 
     implementation(project(":core:ui-theme"))
