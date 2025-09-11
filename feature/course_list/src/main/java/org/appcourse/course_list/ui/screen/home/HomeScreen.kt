@@ -23,7 +23,7 @@ fun HomeScreen(
             CourseListError()
         }
         is CourseListState.Success -> {
-            CourseListSuccess(courses)
+            CourseListSuccess(courses,viewModel.search)
         }
     }
 }

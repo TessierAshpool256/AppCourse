@@ -1,4 +1,4 @@
-package org.appcourse.course_list.ui.view
+package org.appcourse.course_list.ui.screen.home.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
@@ -28,7 +29,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.rememberHazeState
 import org.appcourse.course_list.R
 import org.appcourse.course_list.models.CourseEntity
 import org.appcourse.course_list.utile.mockCourse
@@ -41,6 +46,8 @@ import org.appcourse.ui_theme.Glass
 fun CourseView(
     course: CourseEntity
 ) {
+    val hazeState = rememberHazeState()
+
     Box(
         modifier = Modifier
             .clip(MaterialTheme.shapes.medium)
@@ -48,12 +55,11 @@ fun CourseView(
             .fillMaxWidth(.9f),
     ) {
         Column {
-            ConstraintLayout(
-
-            ) {
+            ConstraintLayout {
                 val (rate, date, image, bookmark) = createRefs()
                 Image(
                     modifier = Modifier
+                        .hazeSource(hazeState, zIndex = 0f)
                         .constrainAs(image) {
                             top.linkTo(parent.top)
                             start.linkTo(parent.start)
@@ -68,6 +74,9 @@ fun CourseView(
 
                 Box(
                     modifier = Modifier
+                        .clip(RoundedCornerShape(16.dp))
+                        .hazeSource(hazeState, zIndex = 1f)
+                        .hazeEffect(hazeState)
                         .size(28.dp)
                         .constrainAs(bookmark) {
                             top.linkTo(parent.top, margin = 8.dp)
@@ -92,15 +101,23 @@ fun CourseView(
 
                 Row(
                     modifier = Modifier
-                        .size(width = 46.dp, height = 22.dp)
+                        .height(22.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .hazeSource(hazeState, zIndex = 1f)
+                        .hazeEffect(hazeState)
                         .constrainAs(rate) {
                             start.linkTo(parent.start, margin = 8.dp)
                             bottom.linkTo(parent.bottom, margin = 8.dp)
                         }
-                        .background(Glass, shape = MaterialTheme.shapes.extraLarge),
+                        .zIndex(1f)
+                        .background(
+                            color = Glass,
+                            shape = MaterialTheme.shapes.extraLarge
+                        ),
                     horizontalArrangement = Arrangement.SpaceAround,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    Spacer(modifier = Modifier.padding(start = 4.dp))
                     Icon(
                         modifier = Modifier
                             .size(12.dp),
@@ -109,46 +126,57 @@ fun CourseView(
                         tint = MaterialTheme.colorScheme.primary
                     )
 
+                    Spacer(modifier = Modifier.padding(start = 4.dp))
+
                     Text(
                         color = MaterialTheme.colorScheme.secondary,
                         style = MaterialTheme.typography.bodySmall,
                         text = course.rate
                     )
+                    Spacer(modifier = Modifier.padding(start = 8.dp))
                 }
 
                 Box(
                     modifier = Modifier
                         .height(22.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .hazeSource(hazeState, zIndex = 1f)
+                        .hazeEffect(hazeState)
                         .constrainAs(date) {
                             start.linkTo(rate.end, margin = 8.dp)
                             bottom.linkTo(parent.bottom, margin = 8.dp)
                         }
-                        .background(Glass, shape = MaterialTheme.shapes.extraLarge),
+                        .background(Glass, shape = MaterialTheme.shapes.extraLarge)
+                        ,
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         modifier = Modifier.padding(horizontal = 8.dp),
                         color = MaterialTheme.colorScheme.secondary,
                         style = MaterialTheme.typography.bodySmall,
-                        text = course.publishDate
+                        text = course.startDate
                     )
                 }
             }
 
-            Box(
-                contentAlignment = Alignment.Center
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Column(
-                    modifier = Modifier.fillMaxWidth(0.9f),
+                    modifier = Modifier.fillMaxWidth(0.95f),
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
+                        modifier = Modifier.padding(top = 8.dp),
                         color = MaterialTheme.colorScheme.secondary,
                         style = MaterialTheme.typography.titleMedium,
                         text = course.title
                     )
 
                     Text(
+                        modifier = Modifier.padding(top = 8.dp, end = 8.dp),
                         color = MaterialTheme.colorScheme.secondary,
                         style = MaterialTheme.typography.bodySmall,
                         maxLines = 2,
@@ -156,13 +184,13 @@ fun CourseView(
                     )
 
                     Row(
-                        modifier = Modifier.fillMaxWidth(1f),
+                        modifier = Modifier
+                            .fillMaxWidth(1f),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
                             color = MaterialTheme.colorScheme.secondary,
-                            modifier = Modifier.padding(start = 16.dp),
                             text = "${course.price} ₽"
                         )
 
@@ -194,6 +222,7 @@ fun previewCourseView() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.padding(16.dp))
             CourseView(course)
         }
     }

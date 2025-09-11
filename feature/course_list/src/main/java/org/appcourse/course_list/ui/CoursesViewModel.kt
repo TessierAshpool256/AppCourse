@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -18,11 +19,11 @@ class CoursesViewModel @Inject constructor (
     private val courseRepository : CourseRepository,
     private val navigator: NavContract
 ): ViewModel() {
-    val buttonList = listOf(
-        BottomNavyItem("Главная", R.drawable.ic_house, isSelected = mutableStateOf(true)) { navigator.navigateToHome() },
-        BottomNavyItem("Избранное", R.drawable.ic_bookmark) { navigator.navigateToLikeCourse() },
-        BottomNavyItem("Аккаунт", R.drawable.ic_person) { navigator.navigateToAccount() }
-    )
+
+//    private val _uiState = MutableStateFlow(SearchUiState(isLoading = true))
+//    val uiState: StateFlow<SearchUiState> = _uiState.asStateFlow()
+
+    var search = mutableStateOf("")
 
     val courses : StateFlow<CourseListState> = courseRepository
         .getCourses()
@@ -31,4 +32,21 @@ class CoursesViewModel @Inject constructor (
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
             initialValue = CourseListState.Loading
         )
+
+
+    val buttonList =  listOf(
+        BottomNavyItem(
+            "Главная",
+            R.drawable.ic_house,
+            isSelected = mutableStateOf(true)
+        ) { navigator.navigateToHome() },
+        BottomNavyItem(
+            "Избранное",
+            R.drawable.ic_bookmark
+        ) { navigator.navigateToLikeCourse() },
+        BottomNavyItem(
+            "Аккаунт",
+            R.drawable.ic_person
+        ) { navigator.navigateToAccount() }
+    )
 }
