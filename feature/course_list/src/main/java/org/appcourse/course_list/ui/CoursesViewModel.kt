@@ -7,8 +7,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import org.appcourse.course_list.R
+import org.appcourse.course_list.models.SortOrder
 import org.appcourse.course_list.ui.view.BottomNavyItem
 import org.appcourse.navigation.NavContract
 import javax.inject.Inject
@@ -19,13 +25,7 @@ class CoursesViewModel @Inject constructor (
     private val courseRepository : CourseRepository,
     private val navigator: NavContract
 ): ViewModel() {
-
-//    private val _uiState = MutableStateFlow(SearchUiState(isLoading = true))
-//    val uiState: StateFlow<SearchUiState> = _uiState.asStateFlow()
-
-    var search = mutableStateOf("")
-
-    val courses : StateFlow<CourseListState> = courseRepository
+    private val rawCourses : StateFlow<CourseListState> = courseRepository
         .getCourses()
         .stateIn(
             scope = viewModelScope,

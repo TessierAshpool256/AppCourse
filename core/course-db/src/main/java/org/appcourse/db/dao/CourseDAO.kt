@@ -23,4 +23,8 @@ interface CourseDAO {
 
     @Query("SELECT * FROM course WHERE id = :id")
     suspend fun getCourse(id: Long): CourseDBO?
+
+
+    @Query("UPDATE course SET hasLike = :fav WHERE id = :id")
+    suspend fun updateFavorite(id: Long, fav: Boolean)
 }

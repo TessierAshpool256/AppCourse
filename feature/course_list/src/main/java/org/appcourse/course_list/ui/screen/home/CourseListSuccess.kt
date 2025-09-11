@@ -27,8 +27,10 @@ import org.appcourse.ui_theme.AppCourseTheme
 
 @Composable
 fun CourseListSuccess(
-    courses: CourseListState.Success,
-    search: MutableState<String>
+    courses: List<CourseEntity>,
+    sortOrder: SortOrder,
+    changeSortOrder: (() -> Unit),
+    toggleFavorite: ((Long, Boolean)-> Unit),
 ) {
     LazyColumn(
         modifier = Modifier
@@ -39,8 +41,8 @@ fun CourseListSuccess(
         item(key = Long.MIN_VALUE) {
             FindFilterHeader(search)
         }
-        items(courses.list, key = { it.id }) { course ->
-            CourseView(course)
+        items(courses, key = { it.id }) { course ->
+            CourseView(course, toggleFavorite)
         }
         item(key = Long.MAX_VALUE) {
             Spacer(modifier = Modifier.padding(8.dp))
@@ -61,10 +63,10 @@ fun PreviewCourseListSuccess() {
         ) {
             Spacer(modifier = Modifier.padding(8.dp))
             CourseListSuccess(
-                CourseListState.Success(
-                    mockCoursesList()
-                ),
-                mutableStateOf("")
+                mockCoursesList(),
+                SortOrder.ById,
+                {},
+                {_, _ -> }
             )
         }
     }

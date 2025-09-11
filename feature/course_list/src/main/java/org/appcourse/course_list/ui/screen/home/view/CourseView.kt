@@ -2,6 +2,7 @@ package org.appcourse.course_list.ui.screen.home.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,11 +41,15 @@ import org.appcourse.course_list.utile.mockCourse
 import org.appcourse.course_list.utile.mockImageByCourseId
 import org.appcourse.ui_theme.AppCourseTheme
 import org.appcourse.ui_theme.Glass
+import kotlin.Boolean
+import kotlin.Long
+import kotlin.Unit
 
 
 @Composable
 fun CourseView(
-    course: CourseEntity
+    course: CourseEntity,
+    toggleFavorite: ((Long, Boolean)-> Unit),
 ) {
     val hazeState = rememberHazeState()
 
@@ -88,14 +93,21 @@ fun CourseView(
                 ) {
                     Box (
                         modifier = Modifier
+                            .clickable { toggleFavorite(course.id, !course.hasLike) }
                             .blur(radius = 16.dp)
                     )
                     Icon(
                         modifier = Modifier
                             .size(16.dp),
-                        painter = painterResource(R.drawable.ic_bookmark),
+                        painter = if (course.hasLike)
+                            painterResource(R.drawable.ic_bookmark_fill)
+                        else
+                            painterResource(R.drawable.ic_bookmark),
                         contentDescription = "Добавить в избранное",
-                        tint = MaterialTheme.colorScheme.secondary
+                        tint = if (course.hasLike)
+                            MaterialTheme.colorScheme.primary
+                        else
+                            MaterialTheme.colorScheme.secondary
                     )
                 }
 
@@ -223,7 +235,7 @@ fun previewCourseView() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.padding(16.dp))
-            CourseView(course)
+            CourseView(course, {_, _ -> })
         }
     }
 }

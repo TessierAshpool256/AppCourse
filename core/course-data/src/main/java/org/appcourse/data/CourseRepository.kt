@@ -50,4 +50,8 @@ class CourseRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun setFavorite(courseId: Long, favorite: Boolean) {
+        dao.updateFavorite(courseId, favorite)
+    }
 }
