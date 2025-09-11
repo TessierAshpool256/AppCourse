@@ -14,6 +14,7 @@ import org.appcourse.navigation.FakeNavigator
 import org.appcourse.navigation.NavContract
 import javax.inject.Inject
 
+
 @HiltViewModel
 open class AuthViewModel @Inject constructor(
     private val navigate: NavContract,

@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
+import org.appcource.auth.screen.RegisterScreen
 import org.appcource.auth.screen.login.LoginScreen
-import org.appcource.auth.screen.login.RegisterScreen
 import org.appcourse.course_list.ui.screen.AccountScreen
 import org.appcourse.course_list.ui.screen.favorite.FavoriteScreen
 import org.appcourse.course_list.ui.screen.home.HomeScreen
