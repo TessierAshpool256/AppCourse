@@ -42,6 +42,9 @@ fun FavoriteList(
         items(courses, key = { it.id }) { course ->
             CourseView(course, toggleFavorite)
         }
+        item(key = Long.MAX_VALUE) {
+            Spacer(modifier = Modifier.padding(8.dp))
+        }
     }
 }
 

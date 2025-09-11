@@ -24,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -64,7 +65,7 @@ fun LoginScreen(
 
     var login by viewModel.login
     var password by viewModel.password
-    var dataIsCorrect by viewModel.dataIsCorrect
+    val dataIsCorrect by viewModel.dataIsCorrect.collectAsState()
 
     Box(
         modifier = Modifier
@@ -124,8 +125,8 @@ fun LoginScreen(
                             value = login,
                             onValueChange = { newText ->
                                 if (alphanumericRegex.matches(newText)) {
-                                    viewModel.checkData()
                                     login = newText
+                                    viewModel.checkData()
                                 }
                             },
                             keyboardOptions = KeyboardOptions.Default.copy(
@@ -177,12 +178,8 @@ fun LoginScreen(
                                 textStyle = TextStyle(color = MaterialTheme.colorScheme.secondary),
                                 value = password,
                                 onValueChange = { newText ->
-//                                    if (alphanumericRegex.matches(newText)) {
-                                    viewModel.checkData()
                                     password = newText
-//                                    } else {
-//                                        Log.d(LOG_TAG, "Password field incorrect char")
-//                                    }
+                                    viewModel.checkData()
                                 },
                                 visualTransformation = if (showPassword) VisualTransformation.None
                                 else PasswordVisualTransformation(),

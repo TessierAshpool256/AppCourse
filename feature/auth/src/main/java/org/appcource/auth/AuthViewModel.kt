@@ -2,7 +2,12 @@ package org.appcource.auth
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import org.appcource.auth.usecase.LoginUseCase
 import org.appcource.auth.usecase.goToMediaUseCase
 import org.appcourse.navigation.FakeNavigator
@@ -17,7 +22,10 @@ open class AuthViewModel @Inject constructor(
 ) : ViewModel() {
     var login = mutableStateOf("")
     var password = mutableStateOf("")
-    var dataIsCorrect = mutableStateOf(false)
+
+    private val _dataIsCorrect = MutableStateFlow(false)
+    val dataIsCorrect: StateFlow<Boolean> = _dataIsCorrect
+
 
     private val emailRegex = Regex(
         "^((?!\\.)[\\w\\-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])\$\n",
@@ -25,7 +33,9 @@ open class AuthViewModel @Inject constructor(
     )
 
     fun checkData() {
-        dataIsCorrect.value = emailRegex.matches(login.value) && password.value.isNotEmpty()
+        viewModelScope.launch {
+            _dataIsCorrect.value = emailRegex.matches(login.value) && password.value.isNotEmpty()
+        }
     }
 
     suspend fun login() {
