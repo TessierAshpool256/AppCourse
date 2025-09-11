@@ -114,7 +114,7 @@ fun LoginScreen(
 
                 MediaButtonView(
                     goToVkMedia = viewModel::goToVkMedia,
-                    goToOkMedia = viewModel::goToVkMedia
+                    goToOkMedia = viewModel::goToOkMedia
                 )
             }
         }
