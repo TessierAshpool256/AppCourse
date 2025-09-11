@@ -31,7 +31,7 @@ materialVersion = "1.13.0"
 
 # android SDK
 androidSdk-target = "36"
-androidSdk-min = "24"
+androidSdk-min = "26"
 androidSdk-compile = "36"
 
 
