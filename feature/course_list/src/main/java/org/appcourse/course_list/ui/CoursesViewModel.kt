@@ -33,6 +33,43 @@ class CoursesViewModel @Inject constructor (
             initialValue = CourseListState.Loading
         )
 
+    private var _sortOrder = MutableStateFlow(SortOrder.ById)
+    val sortOrder: StateFlow<SortOrder> = _sortOrder.asStateFlow()
+
+    fun changeSortOrder() {
+        if (_sortOrder.value == SortOrder.ById)
+            _sortOrder.value =  SortOrder.ByPublishDate
+        else
+            _sortOrder.value =  SortOrder.ById
+    }
+
+    val courses: StateFlow<CourseListState> = combine(
+        rawCourses,
+        _sortOrder
+    ) { state, order ->
+        if (state is CourseListState.Success) {
+            val sorted = when (order) {
+                SortOrder.ById -> state.list.sortedBy { it.id }
+                SortOrder.ByPublishDate -> state.list.sortedBy { it.publishDate }
+            }
+            CourseListState.Success(sorted)
+        } else {
+            CourseListState.Error
+        }
+    }
+        .onStart { emit(CourseListState.Loading) }
+        .catch { e -> emit(CourseListState.Error) }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+            initialValue = CourseListState.Loading
+        )
+
+    fun toggleFavorite(courseId: Long, currentlyFav: Boolean) {
+        viewModelScope.launch {
+            courseRepository.setFavorite(courseId, currentlyFav)
+        }
+    }
 
     val buttonList =  listOf(
         BottomNavyItem(

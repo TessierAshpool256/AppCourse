@@ -11,14 +11,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import org.appcourse.course_list.ui.CourseListState
+import org.appcourse.course_list.models.CourseEntity
+import org.appcourse.course_list.models.SortOrder
 import org.appcourse.course_list.ui.screen.home.view.CourseView
 import org.appcourse.course_list.ui.screen.home.view.FindFilterHeader
 import org.appcourse.course_list.utile.mockCoursesList
@@ -39,7 +37,7 @@ fun CourseListSuccess(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item(key = Long.MIN_VALUE) {
-            FindFilterHeader(search)
+            FindFilterHeader(sortOrder, changeSortOrder)
         }
         items(courses, key = { it.id }) { course ->
             CourseView(course, toggleFavorite)
