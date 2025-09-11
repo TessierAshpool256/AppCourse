@@ -29,6 +29,7 @@ interface NavContractEntryPoint {
     fun navContract(): NavContract
 }
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -49,6 +50,7 @@ class MainActivity : ComponentActivity() {
 
                     DrawScreens(nav.navContract())
                 }
+                StatusBarProtection()
             }
         }
     }
