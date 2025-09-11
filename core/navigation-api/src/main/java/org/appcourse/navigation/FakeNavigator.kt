@@ -9,4 +9,5 @@ class FakeNavigator : NavContract {
     override fun navigateToAccount() { Unit}
     override fun goBack() { Unit}
     override fun login(status: Boolean) { Unit}
+    override fun navigate(screen: NavApi) { Unit }
 }

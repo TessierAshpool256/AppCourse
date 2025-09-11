@@ -46,6 +46,7 @@ fun LoginScreen(
 
     var login by viewModel.login
     var password by viewModel.password
+
     val dataIsCorrect by viewModel.dataIsCorrect.collectAsState()
 
     Box(
@@ -54,69 +55,66 @@ fun LoginScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Box(
+        Column(
             modifier = Modifier
-                .fillMaxWidth(0.9f)
+                .fillMaxWidth(fraction = 0.9f)
                 .padding(bottom = 16.dp),
+            horizontalAlignment = Alignment.Start
         ) {
-            Column(
-                horizontalAlignment = Alignment.Start
-            ) {
-                LoginTitleView()
+            LoginTitleView()
 
-                Spacer(modifier = Modifier.padding(vertical = 8.dp))
+            Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
-                LoginInputField(
-                    label = "Email",
-                    exampleText = "example@gmail.com",
-                    login = login,
-                ) { newText ->
-                    if (alphanumericRegex.matches(newText)) {
-                        login = newText
-                        viewModel.checkData()
-                    }
-                }
-
-                Spacer(modifier = Modifier.padding(top = 16.dp))
-
-                PasswordInputField(
-                    label = "Пароль",
-                    exampleText = "Введите пароль",
-                    password = password,
-                ) { newText ->
-                    password = newText
+            LoginInputField(
+                label = "Email",
+                exampleText = "example@gmail.com",
+                login = login,
+            ) { newText ->
+                if (alphanumericRegex.matches(newText)) {
+                    login = newText
                     viewModel.checkData()
                 }
-
-                Spacer(modifier = Modifier.padding(top = 16.dp))
-
-                LoginButtonView(
-                    dataIsCorrect
-                ) {
-                    Log.d(LOG_TAG, "Push login button")
-                    coroutineScope.launch {
-                        viewModel.login()
-                    }
-                }
-
-                LoginTextSignatureView(
-                    goToForgetPass = viewModel::goToForgetPass,
-                    goToRegistration = viewModel::goToRegistration
-                )
-
-                Spacer(modifier = Modifier.padding(top = 32.dp))
-
-                HorizontalDivider(
-                    color = MaterialTheme.colorScheme.tertiary
-                )
-
-                Spacer(modifier = Modifier.padding(top = 24.dp))
-
-                MediaButtonView(
-                    goToVkMedia = viewModel::goToVkMedia,
-                    goToOkMedia = viewModel::goToOkMedia
-                )
             }
+
+            Spacer(modifier = Modifier.padding(top = 16.dp))
+
+            PasswordInputField(
+                label = "Пароль",
+                exampleText = "Введите пароль",
+                password = password,
+            ) { newText ->
+                password = newText
+                viewModel.checkData()
+            }
+
+            Spacer(modifier = Modifier.padding(top = 16.dp))
+
+            LoginButtonView(
+                dataIsCorrect
+            ) {
+                Log.d(LOG_TAG, "Push login button")
+                coroutineScope.launch {
+                    viewModel.login()
+                }
+            }
+
+            LoginTextSignatureView(
+                goToForgetPass = viewModel::goToForgetPass,
+                goToRegistration = viewModel::goToRegistration
+            )
+
+            Spacer(modifier = Modifier.padding(top = 32.dp))
+
+            HorizontalDivider(
+                color = MaterialTheme.colorScheme.tertiary
+            )
+
+            Spacer(modifier = Modifier.padding(top = 24.dp))
+
+            MediaButtonView(
+                goToVkMedia = viewModel::goToVkMedia,
+                goToOkMedia = viewModel::goToOkMedia
+            )
         }
     }
 }

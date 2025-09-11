@@ -6,8 +6,6 @@ import org.appcourse.db.dao.CourseDAO
 import org.appcourse.db.models.CourseDBO
 
 
-internal const val LOG_TAG = "db"
-
 @Database(
     entities = [
         CourseDBO::class

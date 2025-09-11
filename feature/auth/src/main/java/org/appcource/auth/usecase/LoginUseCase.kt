@@ -2,10 +2,6 @@ package org.appcource.auth.usecase
 
 import javax.inject.Inject
 
-class InvalidEmailException(
-    message: String = "Некорректная почта"
-): IllegalArgumentException(message)
-
 
 class LoginUseCase @Inject constructor() {
     /**
@@ -16,14 +12,11 @@ class LoginUseCase @Inject constructor() {
      *
      * @return корректный логин
      */
-    suspend operator fun invoke(
+    operator fun invoke(
         login: String,
         password: String
     ) : Result<String> {
 
-        return if (true)
-            Result.success(login)
-        else
-            Result.failure(InvalidEmailException())
+        return Result.success(login)
     }
 }

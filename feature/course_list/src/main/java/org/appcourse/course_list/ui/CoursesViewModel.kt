@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.appcourse.course_list.R
+import org.appcourse.course_list.Screen
 import org.appcourse.course_list.models.SortOrder
 import org.appcourse.course_list.repository.CourseRepository
 import org.appcourse.course_list.ui.view.BottomNavyItem
@@ -91,19 +92,15 @@ class CoursesViewModel @Inject constructor (
         }
     }
 
-    val buttonList =  listOf(
-        BottomNavyItem(
-            "Главная",
-            R.drawable.ic_house,
-            isSelected = mutableStateOf(true)
-        ) { navigator.navigateToHome() },
-        BottomNavyItem(
-            "Избранное",
-            R.drawable.ic_bookmark
-        ) { navigator.navigateToLikeCourse() },
-        BottomNavyItem(
-            "Аккаунт",
-            R.drawable.ic_person
-        ) { navigator.navigateToAccount() }
+    fun openScreen(openScreen: Screen) {
+        buttonList.forEach { it.isSelected.value = false }
+
+        buttonList.find { it.screen.title == openScreen.title }?.isSelected?.value = true
+    }
+
+    val buttonList = listOf(
+        BottomNavyItem(Screen.Home),
+        BottomNavyItem(Screen.Favorite),
+        BottomNavyItem(Screen.Account)
     )
 }

@@ -47,7 +47,6 @@ fun FavoriteList(
 }
 
 
-
 @SuppressLint("UnrememberedMutableState")
 @Preview(device = "id:pixel_9", showBackground = true)
 @Composable

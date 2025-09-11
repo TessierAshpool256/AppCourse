@@ -20,7 +20,10 @@ fun DrawScreenFrame(
     Scaffold(
         modifier = Modifier
             .fillMaxSize(1f),
-        bottomBar = { BottomNavBar(nav, viewModel.buttonList) }
+        bottomBar = { BottomNavBar(
+            nav,
+            viewModel.buttonList
+        ) }
     ) { innerPadding ->
         Box(
             modifier = Modifier

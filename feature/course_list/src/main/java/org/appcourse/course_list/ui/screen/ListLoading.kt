@@ -31,6 +31,7 @@ fun ListLoading() {
     }
 }
 
+
 @Preview(device = "id:pixel_9", showBackground = true)
 @Composable
 fun PrevieCourseListLoading() {

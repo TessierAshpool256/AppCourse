@@ -1,5 +1,9 @@
 package org.appcourse.navigation_impl
 
+import org.appcourse.navigation.AccountNavApi
+import org.appcourse.navigation.FavoriteNavApi
+import org.appcourse.navigation.HomeNavApi
+import org.appcourse.navigation.NavApi
 import org.appcourse.navigation.NavContract
 
 
@@ -35,5 +39,13 @@ class Navigate(
             appBackStack.login()
         else
             appBackStack.logout()
+    }
+
+    override fun navigate(screen: NavApi) {
+        when (screen) {
+            is HomeNavApi -> navigateToHome()
+            is FavoriteNavApi -> navigateToLikeCourse()
+            is AccountNavApi -> navigateToAccount()
+        }
     }
 }

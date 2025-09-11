@@ -25,7 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.appcourse.course_list.R
-import org.appcourse.navigation.FakeNavigator
+import org.appcourse.navigation.NavApi
 import org.appcourse.navigation.NavContract
 import org.appcourse.ui_theme.AppCourseTheme
 
@@ -65,8 +65,8 @@ fun DrawBottomNavButton(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    painter = painterResource(item.icon),
-                    contentDescription = item.title,
+                    painter = painterResource(item.screen.iconId),
+                    contentDescription = item.screen.title,
                 )
             }
         }
@@ -75,7 +75,7 @@ fun DrawBottomNavButton(
                 .clickable { click.invoke() },
             style = MaterialTheme.typography.labelMedium,
             color = mainColor,
-            text = item.title
+            text = item.screen.title
         )
         Spacer(modifier = Modifier.padding(bottom = 16.dp))
     }
@@ -97,31 +97,32 @@ fun BottomNavBar(
     ) {
         buttonList.forEach {
             DrawBottomNavButton(it) {
-                buttonList.find { it.isSelected.value }?.isSelected?.value = false
-                it.isSelected.value = true
-                it.goTo.invoke()
+                nav.navigate(it.screen as NavApi)
             }
         }
     }
 }
 
-@SuppressLint("UnrememberedMutableState")
-@Preview(
-    name = "Light Theme",
-    showBackground = true,
-    backgroundColor = 0xFFFFFFFF, device = "id:pixel_9"
-)
-@Composable
-private fun BottomNavBarPreview() {
-    AppCourseTheme {
-        BottomNavBar(FakeNavigator(), listOf(
-            BottomNavyItem(
-                title = "Главная",
-                icon = R.drawable.ic_house,
-                isSelected = mutableStateOf(true)
-            ) {},
-            BottomNavyItem("Избранное", R.drawable.ic_bookmark) {},
-            BottomNavyItem("Аккаунт", R.drawable.ic_person) {}
-        ))
-    }
-}
+
+//@SuppressLint("UnrememberedMutableState") TODO()
+//@Preview(
+//    name = "Light Theme",
+//    showBackground = true,
+//    backgroundColor = 0xFFFFFFFF, device = "id:pixel_9"
+//)
+//@Composable
+//private fun BottomNavBarPreview() {
+//    AppCourseTheme {
+//        BottomNavBar(
+//            listOf(
+//            BottomNavyItem(
+//                title = "Главная",
+//                icon = R.drawable.ic_house,
+//                isSelected = mutableStateOf(true)
+//            ) {},
+//            BottomNavyItem("Избранное", R.drawable.ic_bookmark) {},
+//            BottomNavyItem("Аккаунт", R.drawable.ic_person) {}
+//        )
+//        )
+//    }
+//}

@@ -9,4 +9,3 @@ data class CoursesDTO(
     @SerialName("courses")
     val list: List<CourseDTO>
 )
-

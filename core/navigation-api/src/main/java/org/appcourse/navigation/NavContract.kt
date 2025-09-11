@@ -1,7 +1,5 @@
 package org.appcourse.navigation
 
-private const val LOG_TAG = "nav_api"
-
 
 interface NavContract {
     fun navigateToLogin()
@@ -14,4 +12,6 @@ interface NavContract {
     fun goBack()
 
     fun login(status: Boolean)
+
+    fun navigate(screen: NavApi)
 }

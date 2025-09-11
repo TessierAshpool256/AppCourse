@@ -11,11 +11,9 @@ import retrofit2.create
 import retrofit2.http.GET
 
 
-internal const val LOG_TAG = "api"
-
 interface CourseApi {
     @GET("/u/0/uc?id=15arTK7XT2b7Yv4BJsmDctA4Hg-BbS8-q&export=download")
-    suspend fun CoursesList(
+    suspend fun getCoursesList(
     ): Result<CoursesDTO>
 }
 

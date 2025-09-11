@@ -74,7 +74,7 @@ fun PasswordInputField(
             ) {
                 BasicTextField(
                     modifier = Modifier
-                        .weight(.8f)
+                        .weight(weight = .8f)
                         .padding(start = 16.dp),
                     cursorBrush = SolidColor(MaterialTheme.colorScheme.secondary),
                     textStyle = TextStyle(color = MaterialTheme.colorScheme.secondary),
@@ -89,7 +89,7 @@ fun PasswordInputField(
 
                 Icon(
                     modifier = Modifier
-                        .weight(.1f)
+                        .weight(weight = .1f)
                         .padding(end = 12.dp)
                         .clickable { showPassword = !showPassword }
                         .size(17.dp),

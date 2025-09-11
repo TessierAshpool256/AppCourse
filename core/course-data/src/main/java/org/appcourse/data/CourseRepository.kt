@@ -23,7 +23,7 @@ internal const val LOG_TAG = "CourseRepo"
 @Singleton
 class CourseRepositoryImpl @Inject constructor(
     private val api: CourseApi,
-    private val db: CourseDatabase,
+    db: CourseDatabase,
 ) : CourseRepository {
     private val dao = db.course
 
@@ -36,7 +36,7 @@ class CourseRepositoryImpl @Inject constructor(
 
         coroutineScope {
             launch(Dispatchers.IO) {
-                val result = api.CoursesList()
+                val result = api.getCoursesList()
                 val dto = result.getOrNull()
                 if (result.isSuccess && dto != null) {
                     dao.insertCourses(dto.list.map { it.toCourseDBO() })
