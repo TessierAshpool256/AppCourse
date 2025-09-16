@@ -24,12 +24,15 @@ rootProject.name = "AppCourse"
 include(":app")
 
 include(":core:navigation-api")
+include(":core:navigation-impl")
 include(":core:course-api")
 include(":core:course-di")
 include(":core:course-db")
 include(":core:course-data")
+include(":core:ui-theme")
+
+include(":domain:course")
 
 include(":feature:auth")
 include(":feature:course_list")
-include(":core:navigation-impl")
-include(":core:ui-theme")
+include(":core:utile")

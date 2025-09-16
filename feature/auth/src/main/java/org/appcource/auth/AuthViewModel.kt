@@ -7,8 +7,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.appcource.auth.usecase.LoginUseCase
-import org.appcource.auth.usecase.goToMediaUseCase
+import org.appcourse.course.usecase.GoToMediaUseCase
+import org.appcourse.course.usecase.LoginUseCase
 import org.appcourse.navigation.FakeNavigator
 import org.appcourse.navigation.NavContract
 import javax.inject.Inject
@@ -18,7 +18,7 @@ import javax.inject.Inject
 open class AuthViewModel @Inject constructor(
     private val navigate: NavContract,
     private val loginUC: LoginUseCase? = null,
-    private val goToMediaUC: goToMediaUseCase? = null
+    private val goToMedia: GoToMediaUseCase? = null
 ) : ViewModel() {
     var login = mutableStateOf("")
     var password = mutableStateOf("")
@@ -38,7 +38,7 @@ open class AuthViewModel @Inject constructor(
         }
     }
 
-    suspend fun login() {
+    fun login() {
         loginUC!!.invoke(login.value, password.value).fold(
             {
                 navigate.login(true)
@@ -51,11 +51,11 @@ open class AuthViewModel @Inject constructor(
     }
 
     fun goToVkMedia() {
-        goToMediaUC?.invoke("https://vk.com")
+        goToMedia?.invoke("https://vk.com")
     }
 
     fun goToOkMedia() {
-        goToMediaUC?.invoke("https://ok.ru")
+        goToMedia?.invoke("https://ok.ru")
     }
 
     fun goToRegistration() {

@@ -35,6 +35,7 @@ materialVersion = "1.13.0"
 androidSdk-target = "36"
 androidSdk-min = "26"
 androidSdk-compile = "36"
+navigationCommonKtx = "2.9.4"
 
 
 [libraries]
@@ -92,6 +93,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit-converter-kotlinx-serialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
 
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
+androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version.ref = "navigationCommonKtx" }
 
 
 [plugins]

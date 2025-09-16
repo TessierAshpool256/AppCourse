@@ -47,13 +47,13 @@ fun MediaButtonView(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth(1f),
+            onClick = { goToOkMedia() },
             colors = ButtonColors(
                 containerColor = OkColor,
                 contentColor = MaterialTheme.colorScheme.secondary,
                 disabledContainerColor = OkColor,
                 disabledContentColor = MaterialTheme.colorScheme.secondary
             ),
-            onClick = { goToOkMedia }
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_ok),

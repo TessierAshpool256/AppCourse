@@ -56,9 +56,11 @@ dependencies {
     implementation(libs.dagger.hilt.compose)
     kapt(libs.dagger.hilt.compiler)
 
-    implementation(project(":core:ui-theme"))
-
     implementation(project(":core:navigation-api"))
+    implementation(project(":core:ui-theme"))
+    implementation(project(":core:utile"))
+
+    implementation(project(":domain:course"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
