@@ -20,10 +20,10 @@
             <option value="$PROJECT_DIR$/core/navigation-impl" />
             <option value="$PROJECT_DIR$/core/ui-theme" />
             <option value="$PROJECT_DIR$/core/utile" />
-            <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/domain/course" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/auth" />
+            <option value="$PROJECT_DIR$/feature/auth/domain" />
+            <option value="$PROJECT_DIR$/feature/auth/ui" />
             <option value="$PROJECT_DIR$/feature/course_list" />
           </set>
         </option>

@@ -60,7 +60,7 @@ dependencies {
     implementation(project(":core:ui-theme"))
     implementation(project(":core:utile"))
 
-    implementation(project(":domain:course"))
+    implementation(project(":feature:auth:domain"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

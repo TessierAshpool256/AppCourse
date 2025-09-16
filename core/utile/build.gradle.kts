@@ -45,8 +45,7 @@ dependencies {
 
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
-
-    api(project(":domain:course"))
+    api(project(":feature:auth:domain"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

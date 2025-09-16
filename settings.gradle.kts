@@ -31,8 +31,8 @@ include(":core:course-db")
 include(":core:course-data")
 include(":core:ui-theme")
 
-include(":domain:course")
+include(":feature:auth:ui")
+include(":feature:auth:domain")
 
-include(":feature:auth")
 include(":feature:course_list")
 include(":core:utile")

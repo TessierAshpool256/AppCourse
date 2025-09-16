@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.androidx.navigation3.ui)
 
     api(project(":core:navigation-api"))
-    implementation(project(":feature:auth"))
+    implementation(project(":feature:auth:ui"))
     implementation(project(":feature:course_list"))
 
     testImplementation(libs.junit)

@@ -69,8 +69,8 @@ dependencies {
 
     implementation(project(":core:course-di"))
     implementation(project(":core:ui-theme"))
+    api(project(":feature:auth:ui"))
 
-    api(project(":feature:auth"))
     api(project(":feature:course_list"))
 
     implementation(libs.androidx.compose.adaptive)
