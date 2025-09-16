@@ -27,6 +27,7 @@ class CourseRepositoryImpl @Inject constructor(
 ) : CourseRepository {
     private val dao = db.course
 
+    // Должен возвращать Flow<List<CourseEntity>>
     override fun getCourses(forceRefresh: Boolean): Flow<CourseListState> = flow {
         emit(CourseListState.Loading)
 
