@@ -58,6 +58,6 @@ dependencies {
     implementation(projects.core.utile)
 
     api(projects.core.navigationApi)
-    implementation(projects.feature.auth.domain)
+    implementation(projects.core.domain)
     api(projects.feature.course.ui)
 }

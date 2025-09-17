@@ -56,11 +56,11 @@ dependencies {
     implementation(libs.dagger.hilt.compose)
     kapt(libs.dagger.hilt.compiler)
 
-    
+
     implementation(projects.core.navigationApi)
     implementation(projects.core.uiTheme)
     implementation(projects.core.utile)
-    implementation(projects.feature.auth.domain)
+    implementation(projects.core.domain)
 
 
     testImplementation(libs.junit)

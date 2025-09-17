@@ -47,7 +47,7 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
 
 
-    api(projects.feature.auth.domain)
+    api(projects.core.domain)
 
 
     testImplementation(libs.junit)
