@@ -11,4 +11,6 @@ plugins {
 
     alias(libs.plugins.dagger.hilt.android) apply false
     alias(libs.plugins.androidx.room) apply false
+
+    id("com.vanniktech.dependency.graph.generator") version "0.8.0"
 }

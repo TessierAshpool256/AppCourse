@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.adaptive)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
@@ -65,15 +66,14 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
 
     implementation(libs.kotlinx.serialization.json)
-    implementation(project(":core:navigation-impl"))
 
-    implementation(project(":core:course-di"))
-    implementation(project(":core:ui-theme"))
-    api(project(":feature:auth:ui"))
-    api(project(":feature:course:ui"))
 
-    implementation(libs.androidx.compose.adaptive)
-    implementation(libs.androidx.compose.material3.window.size.class1)
+    implementation(projects.core.navigationImpl)
+    implementation(projects.core.courseDi)
+    implementation(projects.core.uiTheme)
+    api(projects.feature.auth.ui)
+    api(projects.feature.course.ui)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
