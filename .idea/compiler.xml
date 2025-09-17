@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="17">
+    <bytecodeTargetLevel target="11">
       <module name="AppCourse.course-db" target="21" />
+      <module name="AppCourse.feature.ui" target="21" />
       <module name="AppCourse.navigation-api" target="17" />
       <module name="AppCourse.navigation-api.main" target="17" />
       <module name="AppCourse.navigation-api.test" target="17" />

@@ -46,8 +46,7 @@ dependencies {
 
     api(project(":core:course-api"))
     implementation(project(":core:course-db"))
-
-    api(project(":feature:course_list"))
+    api(project(":feature:course:ui"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

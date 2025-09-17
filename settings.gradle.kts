@@ -30,9 +30,10 @@ include(":core:course-di")
 include(":core:course-db")
 include(":core:course-data")
 include(":core:ui-theme")
+include(":core:utile")
 
 include(":feature:auth:ui")
 include(":feature:auth:domain")
 
-include(":feature:course_list")
-include(":core:utile")
+include(":feature:course:ui")
+include(":feature:course:domain")

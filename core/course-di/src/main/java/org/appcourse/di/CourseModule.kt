@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.appcourse.course.SystemNavigator
-import org.appcourse.course_list.repository.CourseRepository
+import org.appcourse.course.ui.repository.CourseRepository
 import org.appcourse.data.CourseRepositoryImpl
 import org.appcourse.utile.AndroidSystemNavigator
 import javax.inject.Singleton

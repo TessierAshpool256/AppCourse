@@ -59,6 +59,5 @@ dependencies {
 
     api(project(":core:navigation-api"))
     implementation(project(":feature:auth:domain"))
-
-    api(project(":feature:course_list"))
+    api(project(":feature:course:ui"))
 }

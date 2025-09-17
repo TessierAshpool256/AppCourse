@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.appcourse.cours_api.CourseApi
-import org.appcourse.course_list.ui.CourseListState
-import org.appcourse.course_list.repository.CourseRepository
+import org.appcourse.course.ui.repository.CourseRepository
+import org.appcourse.course.ui.ui.CourseListState
 import org.appcourse.data.mapper.toCourseDBO
 import org.appcourse.data.mapper.toCourseEntity
 import org.appcourse.db.CourseDatabase
@@ -32,7 +32,9 @@ class CourseRepositoryImpl @Inject constructor(
         emit(CourseListState.Loading)
 
         val cacheFlow = dao.getAllCourses().map { list ->
-            list.map { dbo -> dbo.toCourseEntity() }
+            list.map { dbo ->
+                dbo.toCourseEntity()
+            }
         }.distinctUntilChanged()
 
         coroutineScope {

@@ -70,8 +70,7 @@ dependencies {
     implementation(project(":core:course-di"))
     implementation(project(":core:ui-theme"))
     api(project(":feature:auth:ui"))
-
-    api(project(":feature:course_list"))
+    api(project(":feature:course:ui"))
 
     implementation(libs.androidx.compose.adaptive)
     implementation(libs.androidx.compose.material3.window.size.class1)
