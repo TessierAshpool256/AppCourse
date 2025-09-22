@@ -4,8 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.appcourse.course_list.repository.CourseRepository
+import org.appcourse.course.SystemNavigator
+import org.appcourse.course.repository.CourseRepository
 import org.appcourse.data.CourseRepositoryImpl
+import org.appcourse.utile.AndroidSystemNavigator
 import javax.inject.Singleton
 
 
@@ -18,4 +20,9 @@ abstract class CourseModule {
     abstract fun bindCourseRepository(
         impl: CourseRepositoryImpl
     ): CourseRepository
+
+    @Binds
+    abstract fun bindNavigator(
+        impl: AndroidSystemNavigator
+    ): SystemNavigator
 }

@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
-import org.appcource.auth.screen.RegisterScreen
+import org.appcource.auth.screen.registration.RegistrationScreen
 import org.appcource.auth.screen.login.LoginScreen
-import org.appcourse.course_list.ui.screen.AccountScreen
-import org.appcourse.course_list.ui.screen.favorite.FavoriteScreen
-import org.appcourse.course_list.ui.screen.home.HomeScreen
-import org.appcourse.course_list.ui.view.DrawScreenFrame
+import org.appcourse.course.ui.ui.screen.AccountScreen
+import org.appcourse.course.ui.ui.screen.favorite.FavoriteScreen
+import org.appcourse.course.ui.ui.screen.home.HomeScreen
+import org.appcourse.course.ui.ui.view.DrawScreenFrame
 import org.appcourse.navigation.NavContract
 
 
@@ -28,7 +28,7 @@ fun DrawScreens(
         entryProvider = { key ->
             when (key) {
                 is LoginNav -> NavEntry(key) { LoginScreen() }
-                is RegisterNav -> NavEntry(key) { RegisterScreen() }
+                is RegisterNav -> NavEntry(key) { RegistrationScreen() }
 
                 //--- Course list ---//
                 is AppBackStack.RequiresLogin -> NavEntry(key) {

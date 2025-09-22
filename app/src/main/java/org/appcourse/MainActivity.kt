@@ -12,26 +12,19 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.ui.Modifier
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.EntryPointAccessors
-import dagger.hilt.components.SingletonComponent
 import org.appcourse.navigation.NavContract
 import org.appcourse.navigation_impl.DrawScreens
 import org.appcourse.ui_theme.AppCourseTheme
 import org.appcourse.utile.setEdgeToEdgeConfig
-
-
-@EntryPoint
-@InstallIn(SingletonComponent::class)
-interface NavContractEntryPoint {
-    fun navContract(): NavContract
-}
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var lazyNav: dagger.Lazy<NavContract>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +36,7 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier.padding(insets.asPaddingValues())
                 ) {
-                    val nav = EntryPointAccessors.fromApplication(
-                            this@MainActivity.application,
-                            NavContractEntryPoint::class.java
-                        )
-
-                    DrawScreens(nav.navContract())
+                    DrawScreens(lazyNav.get())
                 }
                 StatusBarProtection()
             }

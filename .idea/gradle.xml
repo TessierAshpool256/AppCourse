@@ -16,12 +16,16 @@
             <option value="$PROJECT_DIR$/core/course-data" />
             <option value="$PROJECT_DIR$/core/course-db" />
             <option value="$PROJECT_DIR$/core/course-di" />
+            <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/navigation-api" />
             <option value="$PROJECT_DIR$/core/navigation-impl" />
             <option value="$PROJECT_DIR$/core/ui-theme" />
+            <option value="$PROJECT_DIR$/core/utile" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/auth" />
-            <option value="$PROJECT_DIR$/feature/course_list" />
+            <option value="$PROJECT_DIR$/feature/auth/ui" />
+            <option value="$PROJECT_DIR$/feature/course" />
+            <option value="$PROJECT_DIR$/feature/course/ui" />
           </set>
         </option>
       </GradleProjectSettings>

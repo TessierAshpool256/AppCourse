@@ -44,10 +44,9 @@ dependencies {
 
     implementation(libs.javax.inject)
 
-    api(project(":core:course-api"))
-    implementation(project(":core:course-db"))
-
-    api(project(":feature:course_list"))
+    api(projects.core.courseApi)
+    api(projects.core.courseDb)
+    api(projects.core.domain)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

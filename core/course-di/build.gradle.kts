@@ -51,12 +51,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":core:course-db"))
-    implementation(project(":core:course-api"))
-    implementation(project(":core:course-data"))
+    implementation(projects.core.navigationImpl)
+    implementation(projects.core.courseDb)
+    implementation(projects.core.courseApi)
+    implementation(projects.core.courseData)
+    implementation(projects.core.utile)
 
-    api(project(":core:navigation-api"))
-    implementation(project(":core:navigation-impl"))
-
-    api(project(":feature:course_list"))
+    api(projects.core.navigationApi)
+    implementation(projects.core.domain)
+    api(projects.feature.course.ui)
 }

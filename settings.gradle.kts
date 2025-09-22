@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         google {
@@ -15,7 +17,13 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
     }
 }
@@ -24,12 +32,14 @@ rootProject.name = "AppCourse"
 include(":app")
 
 include(":core:navigation-api")
+include(":core:navigation-impl")
 include(":core:course-api")
 include(":core:course-di")
 include(":core:course-db")
 include(":core:course-data")
-
-include(":feature:auth")
-include(":feature:course_list")
-include(":core:navigation-impl")
 include(":core:ui-theme")
+include(":core:utile")
+include(":core:domain")
+
+include(":feature:auth:ui")
+include(":feature:course:ui")

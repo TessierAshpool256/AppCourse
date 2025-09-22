@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
       <module name="AppCourse.course-db" target="21" />
+      <module name="AppCourse.feature.ui" target="21" />
       <module name="AppCourse.navigation-api" target="17" />
       <module name="AppCourse.navigation-api.main" target="17" />
       <module name="AppCourse.navigation-api.test" target="17" />
