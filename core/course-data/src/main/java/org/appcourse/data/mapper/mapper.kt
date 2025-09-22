@@ -1,7 +1,7 @@
 package org.appcourse.data.mapper
 
 import org.appcourse.cours_api.models.CourseDTO
-import org.appcourse.course.ui.models.CourseEntity
+import org.appcourse.course.entity.CourseEntity
 import org.appcourse.data.utile.formatRussianDate
 import org.appcourse.db.models.CourseDBO
 

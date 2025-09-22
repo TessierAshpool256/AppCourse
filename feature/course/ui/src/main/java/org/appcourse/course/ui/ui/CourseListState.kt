@@ -1,12 +1,12 @@
 package org.appcourse.course.ui.ui
 
-import org.appcourse.course.ui.models.CourseEntity
+import org.appcourse.course.entity.CourseEntity
 
 
-sealed class CourseListState {
-    object Loading : CourseListState()
+sealed interface CourseListState {
+    object Loading : CourseListState
 
-    data class Success(val list: List<CourseEntity>) : CourseListState()
+    data class Success(val list: List<CourseEntity>) : CourseListState
 
-    data class Error(val massage: String = "Error") : CourseListState()
+    data class Error(val massage: String = "Error") : CourseListState
 }

@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.appcourse.course.ui.models.CourseEntity
+import org.appcourse.course.entity.CourseEntity
 import org.appcourse.course.ui.models.SortOrder
 import org.appcourse.course.ui.ui.screen.home.view.FindFilterHeader
 import org.appcourse.course.ui.ui.view.CourseView

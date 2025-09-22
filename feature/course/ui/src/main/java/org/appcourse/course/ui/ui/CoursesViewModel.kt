@@ -13,14 +13,12 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.appcourse.course.repository.CourseRepository
 import org.appcourse.course.ui.Screen
 import org.appcourse.course.ui.models.SortOrder
-import org.appcourse.course.ui.repository.CourseRepository
 import org.appcourse.course.ui.ui.view.BottomNavyItem
 import org.appcourse.navigation.NavContract
 import javax.inject.Inject
-import kotlin.collections.filter
-import kotlin.collections.sortedBy
 
 
 @HiltViewModel
@@ -30,6 +28,7 @@ class CoursesViewModel @Inject constructor (
 ): ViewModel() {
     private val rawCourses : StateFlow<CourseListState> = courseRepository
         .getCourses()
+        .map(CourseListState::Success)
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),

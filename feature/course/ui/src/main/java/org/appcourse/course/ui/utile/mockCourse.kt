@@ -1,6 +1,6 @@
 package org.appcourse.course.ui.utile
 
-import org.appcourse.course.ui.models.CourseEntity
+import org.appcourse.course.entity.CourseEntity
 
 
 fun mockCourse() = CourseEntity(

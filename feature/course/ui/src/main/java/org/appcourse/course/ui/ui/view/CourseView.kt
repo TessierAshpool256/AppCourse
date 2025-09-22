@@ -35,7 +35,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
-import org.appcourse.course.ui.models.CourseEntity
+import org.appcourse.course.entity.CourseEntity
 import org.appcourse.course.ui.utile.mockCourse
 import org.appcourse.course.ui.utile.mockImageByCourseId
 import org.appcourse.course_list.R
