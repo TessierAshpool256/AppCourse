@@ -17,14 +17,12 @@ import org.appcourse.course.repository.CourseRepository
 import org.appcourse.course.ui.Screen
 import org.appcourse.course.ui.models.SortOrder
 import org.appcourse.course.ui.ui.view.BottomNavyItem
-import org.appcourse.navigation.NavContract
 import javax.inject.Inject
 
 
 @HiltViewModel
 class CoursesViewModel @Inject constructor (
-    private val courseRepository : CourseRepository,
-    private val navigator: NavContract
+    private val courseRepository : CourseRepository
 ): ViewModel() {
     private val rawCourses : StateFlow<CourseListState> = courseRepository
         .getCourses()
