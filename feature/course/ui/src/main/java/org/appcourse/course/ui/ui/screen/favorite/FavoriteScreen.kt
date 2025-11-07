@@ -17,7 +17,6 @@ import org.appcourse.course.ui.ui.screen.ListLoading
 fun FavoriteScreen(
     viewModel: CoursesViewModel = hiltViewModel<CoursesViewModel>()
 ) {
-    remember { viewModel.openScreen(Screen.Favorite) }
     val courses = viewModel.favoriteCourses().collectAsState().value
 
     FavoriteContent(

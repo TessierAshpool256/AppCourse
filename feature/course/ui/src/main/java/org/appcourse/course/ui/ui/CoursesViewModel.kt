@@ -14,9 +14,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.appcourse.course.repository.CourseRepository
-import org.appcourse.course.ui.Screen
 import org.appcourse.course.ui.models.SortOrder
-import org.appcourse.course.ui.ui.view.BottomNavyItem
 import javax.inject.Inject
 
 
@@ -88,16 +86,4 @@ class CoursesViewModel @Inject constructor (
             courseRepository.setFavorite(courseId, currentlyFav)
         }
     }
-
-    fun openScreen(openScreen: Screen) {
-        buttonList.forEach { it.isSelected.value = false }
-
-        buttonList.find { it.screen.title == openScreen.title }?.isSelected?.value = true
-    }
-
-    val buttonList = listOf(
-        BottomNavyItem(Screen.Home),
-        BottomNavyItem(Screen.Favorite),
-        BottomNavyItem(Screen.Account)
-    )
 }

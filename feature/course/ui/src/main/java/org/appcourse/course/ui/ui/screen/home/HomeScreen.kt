@@ -3,9 +3,7 @@ package org.appcourse.course.ui.ui.screen.home
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import org.appcourse.course.ui.Screen
 import org.appcourse.course.ui.models.SortOrder
 import org.appcourse.course.ui.ui.CourseListState
 import org.appcourse.course.ui.ui.CoursesViewModel
@@ -18,8 +16,6 @@ import org.appcourse.course.ui.ui.screen.ListLoading
 fun HomeScreen(
     viewModel: CoursesViewModel = hiltViewModel<CoursesViewModel>()
 ) {
-    remember { viewModel.openScreen(Screen.Home) }
-
     val courses = viewModel.courses.collectAsState().value
     val sortOrder = viewModel.sortOrder.collectAsState().value
 

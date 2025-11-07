@@ -32,7 +32,16 @@ fun DrawScreens(
 
                 //--- Course list ---//
                 is AppBackStack.RequiresLogin -> NavEntry(key) {
-                    DrawScreenFrame(nav) {
+                    DrawScreenFrame(
+                        nav = nav,
+                        selectionDescriptor =
+                            when (key) {
+                                is HomeNav -> 0
+                                is FavoriteCourseNav -> 1
+                                is AccountNav -> 2
+                                else -> 0
+                            }
+                    ) {
                         when (key) {
                             is HomeNav -> HomeScreen()
                             is FavoriteCourseNav -> FavoriteScreen()
