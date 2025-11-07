@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -44,175 +45,175 @@ import org.appcourse.ui_theme.Glass
 
 
 @Composable
+fun CourseImageView(
+    course: CourseEntity,
+    toggleFavorite: ((Long, Boolean)-> Unit)
+) {
+    val hazeState = rememberHazeState()
+
+    ConstraintLayout {
+        val (rate, date, image, bookmark) = createRefs()
+        Image(
+            modifier = Modifier
+                .hazeSource(hazeState, zIndex = 0f)
+                .constrainAs(image) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .fillMaxWidth(1f)
+            ,
+            contentScale = ContentScale.Crop,
+            painter = painterResource(mockImageByCourseId(course.id)),
+            contentDescription = "Course logo"
+        )
+
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(1f))
+                .clickable { toggleFavorite(course.id, !course.hasLike) }
+//                .hazeSource(hazeState, zIndex = 1f)
+//                .hazeEffect(hazeState)
+                .size(28.dp)
+                .background(Glass, shape = CircleShape)
+                .constrainAs(bookmark) {
+                    top.linkTo(parent.top, margin = 8.dp)
+                    end.linkTo(parent.end, margin = 8.dp)
+                }
+                .aspectRatio(1f)
+                .padding(5.dp)
+            ,
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                modifier = Modifier
+                ,
+                painter = painterResource(
+                    if (course.hasLike)
+                        R.drawable.ic_bookmark_fill
+                    else
+                        R.drawable.ic_bookmark
+                ),
+                contentDescription = "Добавить в избранное",
+                tint = if (course.hasLike)
+                    MaterialTheme.colorScheme.primary
+                else
+                    MaterialTheme.colorScheme.secondary
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .height(22.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .hazeSource(hazeState, zIndex = 1f)
+                .hazeEffect(hazeState)
+                .constrainAs(rate) {
+                    start.linkTo(parent.start, margin = 8.dp)
+                    bottom.linkTo(parent.bottom, margin = 8.dp)
+                }
+                .zIndex(1f)
+                .background(
+                    color = Glass,
+                    shape = MaterialTheme.shapes.extraLarge
+                )
+                .padding(horizontal = 8.dp)
+            ,
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                modifier = Modifier
+                    .padding(end = 4.dp)
+                    .size(12.dp),
+                imageVector = Icons.Default.Star,
+                contentDescription = "Star",
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Text(
+                color = MaterialTheme.colorScheme.secondary,
+                style = MaterialTheme.typography.bodySmall,
+                text = course.rate
+            )
+        }
+
+        Text(
+            modifier = Modifier
+                .height(22.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .hazeSource(hazeState, zIndex = 1f)
+                .hazeEffect(hazeState)
+                .constrainAs(date) {
+                    start.linkTo(rate.end, margin = 8.dp)
+                    bottom.linkTo(parent.bottom, margin = 8.dp)
+                }
+                .background(Glass, shape = MaterialTheme.shapes.extraLarge)
+                .padding(horizontal = 8.dp)
+                .wrapContentSize()
+            ,
+            color = MaterialTheme.colorScheme.secondary,
+            style = MaterialTheme.typography.bodySmall,
+            text = course.startDate
+        )
+    }
+}
+
+@Composable
 fun CourseView(
     course: CourseEntity,
     toggleFavorite: ((Long, Boolean)-> Unit),
 ) {
-    val hazeState = rememberHazeState()
-
-    Box(
+    Column(
         modifier = Modifier
+            .fillMaxWidth(fraction = 0.9f)
             .clip(shape = MaterialTheme.shapes.medium)
             .background(color = MaterialTheme.colorScheme.tertiary)
-            .fillMaxWidth(fraction = .9f),
+        ,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column {
-            ConstraintLayout {
-                val (rate, date, image, bookmark) = createRefs()
-                Image(
-                    modifier = Modifier
-                        .hazeSource(hazeState, zIndex = 0f)
-                        .constrainAs(image) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                        }
-                        .fillMaxWidth(1f)
-                    ,
-                    contentScale = ContentScale.Crop,
-                    painter = painterResource(mockImageByCourseId(course.id)),
-                    contentDescription = "Course logo"
+        CourseImageView(
+            course = course,
+            toggleFavorite = toggleFavorite
+        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(fraction = 0.95f),
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(
+                modifier = Modifier.padding(top = 8.dp),
+                color = MaterialTheme.colorScheme.secondary,
+                style = MaterialTheme.typography.titleMedium,
+                text = course.title
+            )
+
+            Text(
+                modifier = Modifier.padding(top = 8.dp, end = 8.dp),
+                color = MaterialTheme.colorScheme.secondary,
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 2,
+                text = course.text
+            )
+
+            Row(
+                modifier = Modifier
+                    .padding(top = 4.dp, bottom = 8.dp)
+                    .fillMaxWidth(1f),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    color = MaterialTheme.colorScheme.secondary,
+                    text = "${course.price} ₽"
                 )
 
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(16.dp))
-                        .hazeSource(hazeState, zIndex = 1f)
-                        .hazeEffect(hazeState)
-                        .size(28.dp)
-                        .constrainAs(bookmark) {
-                            top.linkTo(parent.top, margin = 8.dp)
-                            end.linkTo(parent.end, margin = 8.dp)
-                        }
-                        .background(Glass, shape = CircleShape)
-                        .aspectRatio(1f),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Box (
-                        modifier = Modifier
-                            .clickable { toggleFavorite(course.id, !course.hasLike) }
-                            .blur(radius = 16.dp)
-                    )
-                    Icon(
-                        modifier = Modifier
-                            .size(16.dp),
-                        painter = if (course.hasLike)
-                            painterResource(R.drawable.ic_bookmark_fill)
-                        else
-                            painterResource(R.drawable.ic_bookmark),
-                        contentDescription = "Добавить в избранное",
-                        tint = if (course.hasLike)
-                            MaterialTheme.colorScheme.primary
-                        else
-                            MaterialTheme.colorScheme.secondary
-                    )
-                }
-
-                Row(
-                    modifier = Modifier
-                        .height(22.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .hazeSource(hazeState, zIndex = 1f)
-                        .hazeEffect(hazeState)
-                        .constrainAs(rate) {
-                            start.linkTo(parent.start, margin = 8.dp)
-                            bottom.linkTo(parent.bottom, margin = 8.dp)
-                        }
-                        .zIndex(1f)
-                        .background(
-                            color = Glass,
-                            shape = MaterialTheme.shapes.extraLarge
-                        ),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Spacer(modifier = Modifier.padding(start = 4.dp))
-                    Icon(
-                        modifier = Modifier
-                            .size(12.dp),
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "Star",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-
-                    Spacer(modifier = Modifier.padding(start = 4.dp))
-
-                    Text(
-                        color = MaterialTheme.colorScheme.secondary,
-                        style = MaterialTheme.typography.bodySmall,
-                        text = course.rate
-                    )
-                    Spacer(modifier = Modifier.padding(start = 8.dp))
-                }
-
-                Box(
-                    modifier = Modifier
-                        .height(22.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .hazeSource(hazeState, zIndex = 1f)
-                        .hazeEffect(hazeState)
-                        .constrainAs(date) {
-                            start.linkTo(rate.end, margin = 8.dp)
-                            bottom.linkTo(parent.bottom, margin = 8.dp)
-                        }
-                        .background(Glass, shape = MaterialTheme.shapes.extraLarge)
-                        ,
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        modifier = Modifier.padding(horizontal = 8.dp),
-                        color = MaterialTheme.colorScheme.secondary,
-                        style = MaterialTheme.typography.bodySmall,
-                        text = course.startDate
-                    )
-                }
-            }
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth(fraction = 0.95f),
-                    horizontalAlignment = Alignment.Start
-                ) {
-                    Text(
-                        modifier = Modifier.padding(top = 8.dp),
-                        color = MaterialTheme.colorScheme.secondary,
-                        style = MaterialTheme.typography.titleMedium,
-                        text = course.title
-                    )
-
-                    Text(
-                        modifier = Modifier.padding(top = 8.dp, end = 8.dp),
-                        color = MaterialTheme.colorScheme.secondary,
-                        style = MaterialTheme.typography.bodySmall,
-                        maxLines = 2,
-                        text = course.text
-                    )
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(1f),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            color = MaterialTheme.colorScheme.secondary,
-                            text = "${course.price} ₽"
-                        )
-
-                        Text(
-                            modifier = Modifier.padding(end = 16.dp),
-                            color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.bodySmall,
-                            text = "Подробнее →"
-                        )
-                    }
-                    Spacer(modifier = Modifier.padding(8.dp))
-                }
+                Text(
+                    modifier = Modifier.padding(end = 16.dp),
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.bodySmall,
+                    text = "Подробнее →"
+                )
             }
         }
     }
