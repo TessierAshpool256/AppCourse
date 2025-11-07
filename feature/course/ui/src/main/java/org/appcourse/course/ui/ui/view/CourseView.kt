@@ -41,9 +41,6 @@ import org.appcourse.course.ui.utile.mockImageByCourseId
 import org.appcourse.course_list.R
 import org.appcourse.ui_theme.AppCourseTheme
 import org.appcourse.ui_theme.Glass
-import kotlin.Boolean
-import kotlin.Long
-import kotlin.Unit
 
 
 @Composable
@@ -55,9 +52,9 @@ fun CourseView(
 
     Box(
         modifier = Modifier
-            .clip(MaterialTheme.shapes.medium)
-            .background(MaterialTheme.colorScheme.tertiary)
-            .fillMaxWidth(.9f),
+            .clip(shape = MaterialTheme.shapes.medium)
+            .background(color = MaterialTheme.colorScheme.tertiary)
+            .fillMaxWidth(fraction = .9f),
     ) {
         Column {
             ConstraintLayout {
