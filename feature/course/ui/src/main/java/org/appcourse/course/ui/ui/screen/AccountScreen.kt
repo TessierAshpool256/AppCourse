@@ -15,5 +15,4 @@ fun AccountScreen(
     viewModel: CoursesViewModel = hiltViewModel<CoursesViewModel>()
 ) {
     Text("AccountScreen")
-    remember { viewModel.openScreen(Screen.Account) }
 }

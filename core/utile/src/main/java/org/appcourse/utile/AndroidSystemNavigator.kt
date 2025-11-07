@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AndroidSystemNavigator @Inject constructor(
-    @ApplicationContext private val appContext: Context
+    @param:ApplicationContext private val appContext: Context
 ) : SystemNavigator {
 
     override fun navigate(action: Action) {

@@ -177,7 +177,8 @@ fun CourseView(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Column(
-                    modifier = Modifier.fillMaxWidth(0.95f),
+                    modifier = Modifier
+                        .fillMaxWidth(fraction = 0.95f),
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
